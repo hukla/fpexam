@@ -43,5 +43,10 @@ public class FPNodeContainer {
 	public void setNodeLink(FPNodeContainer nodeLink) {
 		this.nodeLink = nodeLink;
 	}
+
+	@Override
+	public String toString() {
+		return "FPNodeContainer [support=" + support + ", item=" + item + "]";
+	}
 	
 }

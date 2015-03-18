@@ -1,8 +1,14 @@
 package fpgrowth;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+
+import model.FPTree;
 
 
 public class FPGrowth {
@@ -12,12 +18,13 @@ public class FPGrowth {
 	private ValueComparator bvc = new ValueComparator(flist);
 	private TreeMap<Character, Integer> sortedFlist = new TreeMap<Character, Integer>(bvc);
 	private int minsup = 3;
+	private FPTree tree;
 	
-	public void FPGrowth() {
+	public void fpgrowth() {
+		// scan data and find support for each item
 		for(String T : DB) {
 			for(int i = 0; i < T.length(); i++) {
 				char a = T.charAt(i);
-//				System.out.println(a);
 				if(flist.containsKey(a)) {
 					flist.put(a, flist.get(a)+1);
 				} else {
@@ -25,19 +32,63 @@ public class FPGrowth {
 				}
 			}
 		}
-//		System.out.println(flist);
-		sortedFlist.putAll(flist);
-//		System.out.println(sortedFlist);
 		
+		// discard infrequent items;
+		Iterator<Character> it = flist.keySet().iterator();
+		
+		List<Character> infreq = new ArrayList<Character>();
+		while(it.hasNext()) {
+			char c = it.next();
+			
+			if(flist.get(c) < minsup) {
+				infreq.add(c);
+			}
+		}
+		
+		for(int i = 0; i < infreq.size(); i++) {
+			flist.remove(infreq.get(i));
+		}
+
+		// sort freq. items in decreasing order
+		sortedFlist.putAll(flist);
+		
+		System.out.println(sortedFlist);
+		// sort transactions accord. sortedFlist
+		for(String t : DB) {
+			it = sortedFlist.descendingKeySet().iterator();
+			while(it.hasNext()) {
+				char c = it.next();
+				if(t.indexOf(c) != -1) {
+					int idx = t.indexOf(c);
+					if(idx != t.length() - 1) {
+						t = c + t.substring(0, idx) + t.substring(idx+1);
+					} else {
+						t = c + t.substring(0, idx);
+					}
+				}
+				
+			}
+			System.out.println(t);
+		}
+
+		// construct tree
+		tree = new FPTree(DB, sortedFlist);		
+		
+		// growth
+		growth();
 	}
 	
 	public void growth() {
-		
+		// TODO
 	}
 	
+	public void printTree() {
+		System.out.println(tree);
+	}
 	public static void main(String[] args) {
 		FPGrowth test = new FPGrowth();
-		test.FPGrowth();
+		test.fpgrowth();
+		test.printTree();
 	}
 
 }

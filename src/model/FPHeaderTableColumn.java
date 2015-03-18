@@ -23,6 +23,5 @@ public class FPHeaderTableColumn {
 	public void setNodeLink(FPNodeContainer nodeLink) {
 		this.nodeLink = nodeLink;
 	}
-	
-	
+
 }
