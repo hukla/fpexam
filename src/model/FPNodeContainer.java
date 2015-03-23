@@ -46,7 +46,7 @@ public class FPNodeContainer {
 
 	@Override
 	public String toString() {
-		return "FPNodeContainer [support=" + support + ", item=" + item + "]";
+		return "[support=" + support + ", item=" + item + "]";
 	}
 	
 }

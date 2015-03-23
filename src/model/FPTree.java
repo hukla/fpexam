@@ -35,17 +35,14 @@ public class FPTree {
 				item = t.charAt(i);
 				int cursup = 1;
 				int j = 0;
-				for (; !(tempNode.getChildren().isEmpty())
-						&& j < tempNode.getChildren().size(); j++) {
+				for (; !(tempNode.getChildren().isEmpty()) && j < tempNode.getChildren().size(); j++) {
 					if (tempNode.getChildren().get(j).getNode().getItem() == item) {
-						cursup = tempNode.getChildren().get(j).getNode()
-								.getSupport() + 1;
+						cursup = tempNode.getChildren().get(j).getNode().getSupport() + 1;
 						break;
 					}
 				}
 
-				newNode = new FPNode(new FPNodeContainer(cursup, item,
-						tempNode.getNode()));
+				newNode = new FPNode(new FPNodeContainer(cursup, item, tempNode.getNode()));
 
 				if (cursup == 1) {
 					tempNode.putChild(newNode);
@@ -61,13 +58,18 @@ public class FPTree {
 						}
 						tempNodeLink.setNodeLink(newNode.getNode());
 					}
+					
+					tempNode = newNode;
 				} else {
 					tempNode.getChildren().get(j).getNode().setSupport(cursup);
+					
+					tempNode = tempNode.getChildren().get(j);
 				}
-
-				tempNode = newNode;
+				
 			}
 		}
+		
+		System.out.println(headerTable);
 	}
 
 	int tableHasItem(char item) {

@@ -23,5 +23,20 @@ public class FPHeaderTableColumn {
 	public void setNodeLink(FPNodeContainer nodeLink) {
 		this.nodeLink = nodeLink;
 	}
-
+	
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		
+		result.append("[itemName: "+itemName);
+		result.append(", nodeLink: ");
+		FPNodeContainer temp = nodeLink;
+		while(temp != null) {
+			result.append(temp + ",");
+			temp = temp.getNodeLink();
+		}
+		result.append("]\n");
+		
+		return result.toString();
+	}
 }

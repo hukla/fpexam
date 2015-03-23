@@ -54,23 +54,41 @@ public class FPGrowth {
 		
 		System.out.println(sortedFlist);
 		// sort transactions accord. sortedFlist
-		for(String t : DB) {
+//		for(String t : DB) { // this doesn't actually change the content from DB :/
+//			it = sortedFlist.descendingKeySet().iterator();
+//			while(it.hasNext()) {
+//				char c = it.next();
+//				if(t.indexOf(c) != -1) {
+//					int idx = t.indexOf(c);
+//					if(idx != t.length() - 1) {
+//						t = c + t.substring(0, idx) + t.substring(idx+1);
+//					} else {
+//						t = c + t.substring(0, idx);
+//					}
+//				}
+//				
+//			}
+//			System.out.println(t);
+//		}
+		
+		for(int i = 0; i < DB.length; i++) {
 			it = sortedFlist.descendingKeySet().iterator();
+			String t = DB[i];
 			while(it.hasNext()) {
 				char c = it.next();
 				if(t.indexOf(c) != -1) {
 					int idx = t.indexOf(c);
 					if(idx != t.length() - 1) {
-						t = c + t.substring(0, idx) + t.substring(idx+1);
+						DB[i] = c + t.substring(0, idx) + t.substring(idx+1);
 					} else {
 						t = c + t.substring(0, idx);
 					}
 				}
-				
 			}
-			System.out.println(t);
 		}
-
+		
+		for(String t:DB) { System.out.println(t); }
+		
 		// construct tree
 		tree = new FPTree(DB, sortedFlist);		
 		
