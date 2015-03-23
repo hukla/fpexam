@@ -81,6 +81,70 @@ public class FPTree {
 		return -1;
 	}
 
+	public void mining() {
+		int headerTableEnd = headerTable.size() - 1;
+		List<FPColumnCounts> countArray = new ArrayList<FPColumnCounts>();
+		List<FPHeaderTableColumn> localHeaderTable = new ArrayList<FPHeaderTableColumn>();
+		FPNode localRoot;
+		int support;
+		char[] newCodeSoFar;
+		
+		for(int i = headerTableEnd; i > 1; i--) {
+			if(headerTable.get(i).getNodeLink() != null) {
+				//TODO
+			}
+		}
+	}
+	
+	
+	public List<FPHeaderTableColumn> getHeaderTable() {
+		return headerTable;
+	}
+
+	public void setHeaderTable(List<FPHeaderTableColumn> headerTable) {
+		this.headerTable = headerTable;
+	}
+
+	public FPNode getRoot() {
+		return root;
+	}
+
+	public void setRoot(FPNode root) {
+		this.root = root;
+	}
+
+	public Map<Character, Integer> getColumncounts() {
+		return columncounts;
+	}
+
+	public void setColumncounts(Map<Character, Integer> columncounts) {
+		this.columncounts = columncounts;
+	}
+
+	public FPSupportedSets getTempsets() {
+		return tempsets;
+	}
+
+	public void setTempsets(FPSupportedSets tempsets) {
+		this.tempsets = tempsets;
+	}
+
+	public int getTempindex() {
+		return tempindex;
+	}
+
+	public void setTempindex(int tempindex) {
+		this.tempindex = tempindex;
+	}
+
+	public int getNumOfNodes() {
+		return numOfNodes;
+	}
+
+	public void setNumOfNodes(int numOfNodes) {
+		this.numOfNodes = numOfNodes;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder(

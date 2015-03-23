@@ -137,24 +137,24 @@ public class FPtree extends TotalSupportTree {
     private class FPgrowthColumnCounts {
         /** The column/attribute ID number. */
         private short columnNum;
-	/** The associated support value. */
-        private int support=0;
-        
-	/** One argument constructor.
-	@param column the column/attribute ID number. */
+		/** The associated support value. */
+	    private int support=0;
+	        
+		/** One argument constructor.
+		@param column the column/attribute ID number. */
 
-	private FPgrowthColumnCounts(int column) {
-	    columnNum = (short) column;
-	    }  
-        
-	/** Two argument constructor.
-	@param column the column/attribute ID number. 
-	@param sup the associatec support value. */
-	
-	private FPgrowthColumnCounts(int column, int sup) {
-	    columnNum = (short) column;
-	    support = sup;
-	    }  
+		private FPgrowthColumnCounts(int column) {
+		    columnNum = (short) column;
+		}  
+	        
+		/** Two argument constructor.
+		@param column the column/attribute ID number. 
+		@param sup the associatec support value. */
+		
+		private FPgrowthColumnCounts(int column, int sup) {
+		    columnNum = (short) column;
+		    support = sup;
+		}  
 	}   
 	
     // Data structures
@@ -424,21 +424,21 @@ public class FPtree extends TotalSupportTree {
     private void startMining(FPgrowthHeaderTable[] tableRef, 
     						       short[] itemSetSofar) {
         int headerTableEnd = tableRef.length-1;
-	FPgrowthColumnCounts[] countArray = null;
-	FPgrowthHeaderTable[] localHeaderTable = null;
-	FPtreeNode localRoot;
-	int support;
-	short[] newCodeSofar;
-	
-	// Loop through header table from end to start, item by item
-	
+		FPgrowthColumnCounts[] countArray = null;
+		FPgrowthHeaderTable[] localHeaderTable = null;
+		FPtreeNode localRoot;
+		int support;
+		short[] newCodeSofar;
+		
+		// Loop through header table from end to start, item by item
+		
         for (int index=headerTableEnd;index>=1;index--) {
-	    // Check for null link
-	    if (tableRef[index].nodeLink != null) {
-	        // process trail of links from header table element
-	        startMining(tableRef[index].nodeLink,tableRef[index].itemName,
-						itemSetSofar);
-		}
+		    // Check for null link
+		    if (tableRef[index].nodeLink != null) {
+		        // process trail of links from header table element
+		        startMining(tableRef[index].nodeLink,tableRef[index].itemName,
+							itemSetSofar);
+			}
 	    }
 	}
 	

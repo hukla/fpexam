@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import model.FPHeaderTableColumn;
+import model.FPNode;
 import model.FPTree;
 
 
@@ -92,12 +94,8 @@ public class FPGrowth {
 		// construct tree
 		tree = new FPTree(DB, sortedFlist);		
 		
-		// growth
-		growth();
-	}
-	
-	public void growth() {
-		// TODO
+		// mining
+		tree.mining();
 	}
 	
 	public void printTree() {
