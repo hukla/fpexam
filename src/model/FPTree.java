@@ -8,21 +8,16 @@ import java.util.Map;
 public class FPTree {
 	private List<FPHeaderTableColumn> headerTable = new ArrayList<FPHeaderTableColumn>();
 	private FPNode root;
-	private Map<Character, Integer> columncounts = new HashMap<Character, Integer>();
-	private FPSupportedSets tempsets;
-
-	private int tempindex = 0;
-	private int numOfNodes;
-
+	private int minsup;
+	
 	public FPTree() {
 		root = null;
-		tempsets = null;
-		numOfNodes = 0;
 	}
 
-	public FPTree(String[] DB, Map<Character, Integer> flist) {
+	public FPTree(String[] DB, Map<Character, Integer> flist, int minsup) {
 		root = new FPNode();
 		root.setNode(null);
+		this.minsup = minsup;
 
 		FPNode tempNode;
 		FPNode newNode;
@@ -69,7 +64,13 @@ public class FPTree {
 			}
 		}
 		
-		System.out.println(headerTable);
+//		System.out.println(headerTable);
+	}
+
+	public FPTree(List<FPHeaderTableColumn> headerTable, FPNode root, int minsup) {
+		this.headerTable = headerTable;
+		this.root = root;
+		this.minsup = minsup;
 	}
 
 	int tableHasItem(char item) {
@@ -80,20 +81,36 @@ public class FPTree {
 		}
 		return -1;
 	}
+	
+	FPNode hasSinglePrefixPath() {
+		FPNode tail = root;
+		//TODO
+		return tail;
+	}
 
-	public void mining() {
-		int headerTableEnd = headerTable.size() - 1;
-		List<FPColumnCounts> countArray = new ArrayList<FPColumnCounts>();
-		List<FPHeaderTableColumn> localHeaderTable = new ArrayList<FPHeaderTableColumn>();
-		FPNode localRoot;
-		int support;
-		char[] newCodeSoFar;
-		
-		for(int i = headerTableEnd; i > 1; i--) {
-			if(headerTable.get(i).getNodeLink() != null) {
-				//TODO
+	public void growth() {
+		FPNode z;
+		if((z = hasSinglePrefixPath()) != null) {
+			// if tree contains a single prefix path Z
+			List<FPHeaderTableColumn> tempHtable = headerTable;
+			int i = 0;
+			for(; i < headerTable.size(); i++) {
+				if(headerTable.get(i).getItemName() == z.getNode().getItem()) {
+					break;
+				}
 			}
+			tempHtable.remove(i);
+
+			FPTree subtree = new FPTree(tempHtable, z, minsup);
+			subtree.growth();
+			generateARs();
+		} else {
+			//TODO generate pattern????
 		}
+	}
+	
+	public void generateARs() {
+		// TODO
 	}
 	
 	
@@ -111,38 +128,6 @@ public class FPTree {
 
 	public void setRoot(FPNode root) {
 		this.root = root;
-	}
-
-	public Map<Character, Integer> getColumncounts() {
-		return columncounts;
-	}
-
-	public void setColumncounts(Map<Character, Integer> columncounts) {
-		this.columncounts = columncounts;
-	}
-
-	public FPSupportedSets getTempsets() {
-		return tempsets;
-	}
-
-	public void setTempsets(FPSupportedSets tempsets) {
-		this.tempsets = tempsets;
-	}
-
-	public int getTempindex() {
-		return tempindex;
-	}
-
-	public void setTempindex(int tempindex) {
-		this.tempindex = tempindex;
-	}
-
-	public int getNumOfNodes() {
-		return numOfNodes;
-	}
-
-	public void setNumOfNodes(int numOfNodes) {
-		this.numOfNodes = numOfNodes;
 	}
 
 	@Override
