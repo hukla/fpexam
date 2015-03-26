@@ -240,7 +240,7 @@ public class FPGrowth {
                 while (!conditionalItem.isRoot()) {
                     conditionalPattern = conditionalItem.item + " " + (conditionalPattern != null ? conditionalPattern : "");
                     conditionalItem = conditionalItem.parent;
-                }
+                }//TODO
                 if (conditionalPattern != null) {
                     conditionalPatternBase.put(conditionalPattern, iteminTree.count);
                 }

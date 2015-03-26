@@ -2,45 +2,75 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class FPNode {
-	private FPNodeContainer node;
-	private List<FPNode> children = new ArrayList<FPNode>();
+	private int support;
+	private char item;
+	private FPNode parent;
+	private FPNode nodeLink;
+	private Vector<FPNode> children = new Vector<FPNode>(); 
 	
 	public FPNode() {
-		node = null;
+		support = 0;
+		parent = null;
+		nodeLink = null;
 	}
 	
-	public FPNode(FPNodeContainer newNode) {
-		node = newNode;
+	public FPNode(int support, char item, FPNode parent) {
+		this.support = support;
+		this.item = item;
+		this.parent = parent;
+		nodeLink = null;
 	}
 
-	public FPNodeContainer getNode() {
-		return node;
+	public int getSupport() {
+		return support;
 	}
 
-	public void setNode(FPNodeContainer node) {
-		this.node = node;
+
+	public void setSupport(int support) {
+		this.support = support;
 	}
 
-	public List<FPNode> getChildren() {
+
+	public char getItem() {
+		return item;
+	}
+
+
+	public void setItem(char item) {
+		this.item = item;
+	}
+
+
+	public FPNode getParent() {
+		return parent;
+	}
+
+
+	public void setParent(FPNode parent) {
+		this.parent = parent;
+	}
+
+
+	public FPNode getNodeLink() {
+		return nodeLink;
+	}
+
+
+	public void setNodeLink(FPNode nodeLink) {
+		this.nodeLink = nodeLink;
+	}
+
+
+	public Vector<FPNode> getChildren() {
 		return children;
 	}
 
-	public void setChildren(List<FPNode> children) {
-		this.children = children;
-	}
 
-	public FPNode hasChild(char item) {
-		FPNode result = null;
-		
-		for(FPNode c : children) {
-			if(c.getNode().getItem() == item) {
-				result = c;
-			}
-		}
-		
-		return result;
+	public void setChildren(Vector<FPNode> children) {
+		this.children = children;
 	}
 	
 	public void putChild(FPNode child) {
@@ -49,14 +79,9 @@ public class FPNode {
 
 	@Override
 	public String toString() {
-		StringBuilder result = new StringBuilder();
-		result.append("[ node : " + node);
-		result.append(", children (\n");
-		for(FPNode c : children) {
-			result.append(c + "");
-		}
-		result.append(" )]\n");
-		return result.toString();
+		return "FPNode [support=" + support + ", item=" + item + ", parent="
+				+ parent + ", nodeLink=" + nodeLink + ", children=" + children
+				+ "]";
 	}
-	
+
 }
