@@ -242,7 +242,7 @@ public class FPGrowth {
                     conditionalItem = conditionalItem.parent;
                 }//TODO
                 if (conditionalPattern != null) {
-                    conditionalPatternBase.put(conditionalPattern, iteminTree.count);
+                    conditionalPatternBase.put(conditionalPattern, iteminTree.count); //??? put 아니고 더해져야 하는 거 아님???
                 }
             }
             frequentPatterns.put(currentPattern, supportofCurrentPattern);
@@ -276,7 +276,7 @@ public class FPGrowth {
                 conditional_headerTable.add(f);
             }
             FPtree conditional_fptree = conditional_fptree_constructor(conditionalPatternBase, conditionalItemsMaptoFrequencies, threshold, conditional_headerTable);
-            //headertable reverse ordering
+            //headertable reverse ordering ???? why????
             Collections.sort(conditional_headerTable, new frequencyComparitorinHeaderTable());
             //
             if (!conditional_fptree.children.isEmpty()) {
@@ -284,6 +284,7 @@ public class FPGrowth {
             }
         }
     }
+
 
     private void insert(Vector<String> pattern_vector, int count_of_pattern, FPtree conditional_fptree, Vector<FPtree> conditional_headerTable) {
         if (pattern_vector.isEmpty()) {

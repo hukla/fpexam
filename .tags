@@ -1,0 +1,334 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AssocRuleMining	.\reference\1\AssocRuleMining.java	/^	public AssocRuleMining(String[] args) {$/;"	m	class:AssocRuleMining
+AssocRuleMining	.\reference\1\AssocRuleMining.java	/^public class AssocRuleMining extends JFrame {$/;"	c
+CheckInputArguments	.\reference\1\AssocRuleMining.java	/^	protected void CheckInputArguments() {$/;"	m	class:AssocRuleMining
+DB	.\src\fpgrowth\FPGrowth.java	/^	private String []DB = {"facdgimp", "abcflmo", "bfhjo", "bcksp", "afcelpmn"};$/;"	f	class:FPGrowth	file:
+FPColumnCounts	.\src\model\FPColumnCounts.java	/^		public FPColumnCounts(char column) {$/;"	m	class:FPColumnCounts
+FPColumnCounts	.\src\model\FPColumnCounts.java	/^		public FPColumnCounts(char column, int sup) {$/;"	m	class:FPColumnCounts
+FPColumnCounts	.\src\model\FPColumnCounts.java	/^public class FPColumnCounts {$/;"	c
+FPGrowth	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^    public FPGrowth(File file, int threshold) throws FileNotFoundException {$/;"	m	class:FPGrowth
+FPGrowth	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^public class FPGrowth {$/;"	c
+FPGrowth	.\src\fpgrowth\FPGrowth.java	/^public class FPGrowth {$/;"	c
+FPHeaderTableColumn	.\src\model\FPHeaderTableColumn.java	/^	public FPHeaderTableColumn (char item) {$/;"	m	class:FPHeaderTableColumn
+FPHeaderTableColumn	.\src\model\FPHeaderTableColumn.java	/^public class FPHeaderTableColumn {$/;"	c
+FPNode	.\src\model\FPNode.java	/^	public FPNode() {$/;"	m	class:FPNode
+FPNode	.\src\model\FPNode.java	/^	public FPNode(char item, FPNode nodeLink) {$/;"	m	class:FPNode
+FPNode	.\src\model\FPNode.java	/^	public FPNode(int support, char item, FPNode parent) {$/;"	m	class:FPNode
+FPNode	.\src\model\FPNode.java	/^public class FPNode {$/;"	c
+FPNodeContainer	.\src\model\FPNodeContainer.java	/^	public FPNodeContainer() {$/;"	m	class:FPNodeContainer
+FPNodeContainer	.\src\model\FPNodeContainer.java	/^	public FPNodeContainer(int support, char item, FPNodeContainer parent) {$/;"	m	class:FPNodeContainer
+FPNodeContainer	.\src\model\FPNodeContainer.java	/^public class FPNodeContainer {$/;"	c
+FPSupportedSets	.\src\model\FPSupportedSets.java	/^	public FPSupportedSets() {$/;"	m	class:FPSupportedSets
+FPSupportedSets	.\src\model\FPSupportedSets.java	/^	public FPSupportedSets(char[] itemset, int support, FPSupportedSets nodelink) {$/;"	m	class:FPSupportedSets
+FPSupportedSets	.\src\model\FPSupportedSets.java	/^public class FPSupportedSets {$/;"	c
+FPTree	.\src\model\FPTree.java	/^	public FPTree() {$/;"	m	class:FPTree
+FPTree	.\src\model\FPTree.java	/^	public FPTree(String[] DB, Map<Character, Integer> flist, int minsup) {$/;"	m	class:FPTree
+FPTree	.\src\model\FPTree.java	/^	public FPTree(Vector<FPNode> headerTable, FPNode root, int minsup) {$/;"	m	class:FPTree
+FPTree	.\src\model\FPTree.java	/^public class FPTree {$/;"	c
+FPgrowth	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^    void FPgrowth(FPtree fptree, String base, int threshold, Vector<FPtree> headerTable, Map<String, Integer> frequentPatterns) {$/;"	m	class:FPGrowth
+FPgrowthColumnCounts	.\reference\1\FPtree.java	/^		private FPgrowthColumnCounts(int column) {$/;"	m	class:FPtree.FPgrowthColumnCounts	file:
+FPgrowthColumnCounts	.\reference\1\FPtree.java	/^		private FPgrowthColumnCounts(int column, int sup) {$/;"	m	class:FPtree.FPgrowthColumnCounts	file:
+FPgrowthColumnCounts	.\reference\1\FPtree.java	/^	private class FPgrowthColumnCounts {$/;"	c	class:FPtree
+FPgrowthHeaderTable	.\reference\1\FPtree.java	/^		protected FPgrowthHeaderTable(short columnNum) {$/;"	m	class:FPtree.FPgrowthHeaderTable
+FPgrowthHeaderTable	.\reference\1\FPtree.java	/^	protected class FPgrowthHeaderTable {$/;"	c	class:FPtree
+FPgrowthItemPrefixSubtreeNode	.\reference\1\FPtree.java	/^		private FPgrowthItemPrefixSubtreeNode() {$/;"	m	class:FPtree.FPgrowthItemPrefixSubtreeNode	file:
+FPgrowthItemPrefixSubtreeNode	.\reference\1\FPtree.java	/^		private FPgrowthItemPrefixSubtreeNode(short name, int support,$/;"	m	class:FPtree.FPgrowthItemPrefixSubtreeNode	file:
+FPgrowthItemPrefixSubtreeNode	.\reference\1\FPtree.java	/^	private class FPgrowthItemPrefixSubtreeNode {$/;"	c	class:FPtree
+FPgrowthSupportedSets	.\reference\1\FPtree.java	/^		private FPgrowthSupportedSets(short[] newitemSet, int newSupport,$/;"	m	class:FPtree.FPgrowthSupportedSets	file:
+FPgrowthSupportedSets	.\reference\1\FPtree.java	/^	private class FPgrowthSupportedSets {$/;"	c	class:FPtree
+FPtree	.\reference\1\FPtree.java	/^	public FPtree(String[] args) {$/;"	m	class:FPtree
+FPtree	.\reference\1\FPtree.java	/^public class FPtree extends TotalSupportTree {$/;"	c
+FPtree	.\reference\FP-Growth-Java-master\src\fpgrowth\FPtree.java	/^    public FPtree(String item) {$/;"	m	class:FPtree
+FPtree	.\reference\FP-Growth-Java-master\src\fpgrowth\FPtree.java	/^public class FPtree {$/;"	c
+FPtreeNode	.\reference\1\FPtree.java	/^		protected FPtreeNode() {$/;"	m	class:FPtree.FPtreeNode
+FPtreeNode	.\reference\1\FPtree.java	/^		protected FPtreeNode(FPgrowthItemPrefixSubtreeNode newNode) {$/;"	m	class:FPtree.FPtreeNode
+FPtreeNode	.\reference\1\FPtree.java	/^	protected class FPtreeNode {$/;"	c	class:FPtree
+MAX_CONFIDENCE	.\reference\1\AssocRuleMining.java	/^	private static final double MAX_CONFIDENCE = 100.0;$/;"	f	class:AssocRuleMining	file:
+MAX_SUPPORT	.\reference\1\AssocRuleMining.java	/^	private static final double MAX_SUPPORT = 100.0;$/;"	f	class:AssocRuleMining	file:
+MIN_CONFIDENCE	.\reference\1\AssocRuleMining.java	/^	private static final double MIN_CONFIDENCE = 0.0;$/;"	f	class:AssocRuleMining	file:
+MIN_SUPPORT	.\reference\1\AssocRuleMining.java	/^	private static final double MIN_SUPPORT = 0.0;$/;"	f	class:AssocRuleMining	file:
+Main	.\reference\FP-Growth-Java-master\src\fpgrowth\Main.java	/^public class Main {$/;"	c
+RuleNode	.\reference\1\AssocRuleMining.java	/^		protected RuleNode(short[] ante, short[] cons, double confValue) {$/;"	m	class:AssocRuleMining.RuleNode
+RuleNode	.\reference\1\AssocRuleMining.java	/^	protected class RuleNode {$/;"	c	class:AssocRuleMining
+TotalSupportTree	.\reference\1\TotalSupportTree.java	/^	public TotalSupportTree(String[] args) {$/;"	m	class:TotalSupportTree
+TotalSupportTree	.\reference\1\TotalSupportTree.java	/^public class TotalSupportTree extends AssocRuleMining {$/;"	c
+TtreeNode	.\reference\1\TtreeNode.java	/^    public TtreeNode() {$/;"	m	class:TtreeNode
+TtreeNode	.\reference\1\TtreeNode.java	/^    public TtreeNode(int sup) {$/;"	m	class:TtreeNode
+TtreeNode	.\reference\1\TtreeNode.java	/^public class TtreeNode {$/;"	c
+ValueComparator	.\src\fpgrowth\FPGrowth.java	/^	public ValueComparator(Map<Character, Integer> base) {$/;"	m	class:ValueComparator
+ValueComparator	.\src\fpgrowth\FPGrowth.java	/^class ValueComparator implements Comparator<Character> {$/;"	c
+addRefToFPgrowthHeaderTable	.\reference\1\FPtree.java	/^	private void addRefToFPgrowthHeaderTable(short columnNumber,$/;"	m	class:FPtree	file:
+addRestOfitemSet	.\reference\1\FPtree.java	/^	private void addRestOfitemSet(FPtreeNode ref,$/;"	m	class:FPtree	file:
+addToFPtree	.\reference\1\FPtree.java	/^	private void addToFPtree(FPtreeNode ref, int place, short[] itemSet,$/;"	m	class:FPtree	file:
+addToFPtree1	.\reference\1\FPtree.java	/^	private boolean addToFPtree1(FPtreeNode ref, int place, short[] itemSet,$/;"	m	class:FPtree	file:
+addToFPtree2	.\reference\1\FPtree.java	/^	private void addToFPtree2(FPtreeNode ref, int place, short[] itemSet,$/;"	m	class:FPtree	file:
+addToTtree	.\reference\1\TotalSupportTree.java	/^	protected TtreeNode[] addToTtree(TtreeNode[] linkRef, int size,$/;"	m	class:TotalSupportTree
+addToTtree	.\reference\1\TotalSupportTree.java	/^	public void addToTtree(short[] itemSet, int support) {$/;"	m	class:TotalSupportTree
+antecedent	.\reference\1\AssocRuleMining.java	/^		protected short[] antecedent;$/;"	f	class:AssocRuleMining.RuleNode
+base	.\src\fpgrowth\FPGrowth.java	/^	Map<Character, Integer> base;$/;"	f	class:ValueComparator
+binConversion	.\reference\1\AssocRuleMining.java	/^	protected short[] binConversion(StringTokenizer dataLine, int numberOfTokens) {$/;"	m	class:AssocRuleMining
+bvc	.\src\fpgrowth\FPGrowth.java	/^	private ValueComparator bvc = new ValueComparator(flist);$/;"	f	class:FPGrowth	file:
+calculateStorage	.\reference\1\FPtree.java	/^	private int calculateStorage(FPtreeNode[] ref, int storage) {$/;"	m	class:FPtree	file:
+calculateStorage	.\reference\1\TotalSupportTree.java	/^	private int calculateStorage(int localStorage, TtreeNode[] linkRef) {$/;"	m	class:TotalSupportTree	file:
+calculateStorage	.\reference\1\TotalSupportTree.java	/^	protected int calculateStorage() {$/;"	m	class:TotalSupportTree
+checkFileName	.\reference\1\AssocRuleMining.java	/^	protected void checkFileName() {$/;"	m	class:AssocRuleMining
+checkLine	.\reference\1\AssocRuleMining.java	/^	protected void checkLine(int counter, String str) {$/;"	m	class:AssocRuleMining
+checkLineOrdering	.\reference\1\AssocRuleMining.java	/^	protected boolean checkLineOrdering(int lineNum, short[] itemSet) {$/;"	m	class:AssocRuleMining
+checkOrdering	.\reference\1\AssocRuleMining.java	/^	protected boolean checkOrdering() {$/;"	m	class:AssocRuleMining
+checkSupportAndConfidence	.\reference\1\AssocRuleMining.java	/^	protected void checkSupportAndConfidence() {$/;"	m	class:AssocRuleMining
+childRef	.\reference\1\TtreeNode.java	/^    public TtreeNode[] childRef = null;$/;"	f	class:TtreeNode
+childRefs	.\reference\1\FPtree.java	/^		private FPtreeNode[] childRefs = null;$/;"	f	class:FPtree.FPtreeNode	file:
+children	.\reference\FP-Growth-Java-master\src\fpgrowth\FPtree.java	/^    Vector<FPtree> children;$/;"	f	class:FPtree
+children	.\src\model\FPNode.java	/^	private Vector<FPNode> children = new Vector<FPNode>(); $/;"	f	class:FPNode	file:
+closeFile	.\reference\1\AssocRuleMining.java	/^	protected void closeFile() {$/;"	m	class:AssocRuleMining
+column	.\src\model\FPColumnCounts.java	/^		private char column;$/;"	f	class:FPColumnCounts	file:
+columnNum	.\reference\1\FPtree.java	/^		private short columnNum;$/;"	f	class:FPtree.FPgrowthColumnCounts	file:
+combinations	.\reference\1\AssocRuleMining.java	/^	private int combinations(short[] inputSet, int inputIndex, short[] sofar,$/;"	m	class:AssocRuleMining	file:
+combinations	.\reference\1\AssocRuleMining.java	/^	protected short[][] combinations(short[] inputSet) {$/;"	m	class:AssocRuleMining
+compare	.\reference\FP-Growth-Java-master\src\fpgrowth\frequencyComparitor.java	/^    public int compare(FPtree o1, FPtree o2) {$/;"	m	class:frequencyComparitorinHeaderTable
+compare	.\src\fpgrowth\FPGrowth.java	/^	public int compare(Character a, Character b) {$/;"	m	class:ValueComparator
+complement	.\reference\1\AssocRuleMining.java	/^	protected short[] complement(short[] itemSet1, short[] itemSet2) {$/;"	m	class:AssocRuleMining
+conditional_fptree_constructor	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^    private FPtree conditional_fptree_constructor(Map<String, Integer> conditionalPatternBase, Map<String, Integer> conditionalItemsMaptoFrequencies, int threshold, Vector<FPtree> conditional_headerTable) {$/;"	m	class:FPGrowth	file:
+confidence	.\reference\1\AssocRuleMining.java	/^	protected double confidence = 80.0;$/;"	f	class:AssocRuleMining
+confidenceForRule	.\reference\1\AssocRuleMining.java	/^		double confidenceForRule = 0.0;$/;"	f	class:AssocRuleMining.RuleNode
+consequent	.\reference\1\AssocRuleMining.java	/^		protected short[] consequent;$/;"	f	class:AssocRuleMining.RuleNode
+construct_fpTree	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^    private void construct_fpTree(File file, Map<String, Integer> itemsMaptoFrequencies, Scanner input, List<String> sortedItemsbyFrequencies, Vector<String> itemstoRemove) throws FileNotFoundException {$/;"	m	class:FPGrowth	file:
+conversionArray	.\reference\1\AssocRuleMining.java	/^	protected int[][] conversionArray = null;$/;"	f	class:AssocRuleMining
+copyItemSet	.\reference\1\AssocRuleMining.java	/^	protected short[] copyItemSet(short[] itemSet) {$/;"	m	class:AssocRuleMining
+count	.\reference\FP-Growth-Java-master\src\fpgrowth\FPtree.java	/^    int count;$/;"	f	class:FPtree
+countFPgrowthSingles	.\reference\1\FPtree.java	/^	private FPgrowthColumnCounts[] countFPgrowthSingles() {$/;"	m	class:FPtree	file:
+countNumCols	.\reference\1\AssocRuleMining.java	/^	protected void countNumCols() {$/;"	m	class:AssocRuleMining
+countNumFreqSets	.\reference\1\TotalSupportTree.java	/^	protected int countNumFreqSets() {$/;"	m	class:TotalSupportTree
+countNumFreqSets	.\reference\1\TotalSupportTree.java	/^	protected int countNumFreqSets(int size, TtreeNode[] linkRef, int num) {$/;"	m	class:TotalSupportTree
+countSingles	.\reference\1\AssocRuleMining.java	/^	protected int[][] countSingles() {$/;"	m	class:AssocRuleMining
+createFPtree	.\reference\1\FPtree.java	/^	public void createFPtree() {$/;"	m	class:FPtree
+createLocalHeaderTable	.\reference\1\FPtree.java	/^	private FPgrowthHeaderTable[] createLocalHeaderTable($/;"	m	class:FPtree	file:
+dataArray	.\reference\1\AssocRuleMining.java	/^	protected short[][] dataArray = null;$/;"	f	class:AssocRuleMining
+defConvertArrays	.\reference\1\AssocRuleMining.java	/^	protected void defConvertArrays(int[][] countArray) {$/;"	m	class:AssocRuleMining
+duration	.\reference\1\TotalSupportTree.java	/^	protected String duration = null;$/;"	f	class:TotalSupportTree
+errorFlag	.\reference\1\AssocRuleMining.java	/^	protected boolean errorFlag = true;$/;"	f	class:AssocRuleMining
+file	.\reference\FP-Growth-Java-master\src\fpgrowth\Main.java	/^    static String file = "census.dat";$/;"	f	class:Main
+fileInput	.\reference\1\AssocRuleMining.java	/^	protected BufferedReader fileInput;$/;"	f	class:AssocRuleMining
+fileName	.\reference\1\AssocRuleMining.java	/^	protected String fileName = null;$/;"	f	class:AssocRuleMining
+filePath	.\reference\1\AssocRuleMining.java	/^	protected File filePath = null;$/;"	f	class:AssocRuleMining
+flist	.\src\fpgrowth\FPGrowth.java	/^	private Map<Character, Integer> flist = new HashMap<Character, Integer>();$/;"	f	class:FPGrowth	file:
+fpgrowth	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^    private void fpgrowth(FPtree fptree, int threshold, Vector<FPtree> headerTable) {$/;"	m	class:FPGrowth	file:
+fpgrowth	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^package fpgrowth;$/;"	p
+fpgrowth	.\reference\FP-Growth-Java-master\src\fpgrowth\FPtree.java	/^package fpgrowth;$/;"	p
+fpgrowth	.\reference\FP-Growth-Java-master\src\fpgrowth\Main.java	/^package fpgrowth;$/;"	p
+fpgrowth	.\reference\FP-Growth-Java-master\src\fpgrowth\frequencyComparitor.java	/^package fpgrowth;$/;"	p
+fpgrowth	.\src\fpgrowth\FPGrowth.java	/^	public void fpgrowth() {$/;"	m	class:FPGrowth
+fpgrowth	.\src\fpgrowth\FPGrowth.java	/^package fpgrowth;$/;"	p
+fptree	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^    FPtree fptree;$/;"	f	class:FPGrowth
+fptree	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^    private void fptree(File file) throws FileNotFoundException {$/;"	m	class:FPGrowth	file:
+freqPatterns	.\src\model\FPTree.java	/^	private Map<String, Integer> freqPatterns;$/;"	f	class:FPTree	file:
+frequencyComparitorinHeaderTable	.\reference\FP-Growth-Java-master\src\fpgrowth\frequencyComparitor.java	/^    public frequencyComparitorinHeaderTable() {$/;"	m	class:frequencyComparitorinHeaderTable
+frequencyComparitorinHeaderTable	.\reference\FP-Growth-Java-master\src\fpgrowth\frequencyComparitor.java	/^class frequencyComparitorinHeaderTable implements Comparator<FPtree>{$/;"	c
+frequentPatterns	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^    Map<String, Integer> frequentPatterns;$/;"	f	class:FPGrowth
+genSupHeadTabItem	.\reference\1\FPtree.java	/^	private int genSupHeadTabItem(FPgrowthItemPrefixSubtreeNode nodeLink) {$/;"	m	class:FPtree	file:
+generateARs	.\reference\1\TotalSupportTree.java	/^	protected void generateARs(short[] itemSetSofar, int size,$/;"	m	class:TotalSupportTree
+generateARs	.\reference\1\TotalSupportTree.java	/^	public void generateARs() {$/;"	m	class:TotalSupportTree
+generateARs2	.\reference\1\TotalSupportTree.java	/^	protected void generateARs2() {$/;"	m	class:TotalSupportTree
+generateARsFromItemset	.\reference\1\TotalSupportTree.java	/^	private void generateARsFromItemset(short[] itemSet, double support) {$/;"	m	class:TotalSupportTree	file:
+generateAncestorCodes	.\reference\1\FPtree.java	/^	private void generateAncestorCodes(FPgrowthItemPrefixSubtreeNode ref) {$/;"	m	class:FPtree	file:
+generateLocalFPtree	.\reference\1\FPtree.java	/^	private FPtreeNode generateLocalFPtree(FPgrowthHeaderTable[] tableRef) {$/;"	m	class:FPtree	file:
+getAncestorCode	.\reference\1\FPtree.java	/^	private short[] getAncestorCode(FPgrowthItemPrefixSubtreeNode ref) {$/;"	m	class:FPtree	file:
+getChildren	.\src\model\FPNode.java	/^	public Vector<FPNode> getChildren() {$/;"	m	class:FPNode
+getCombinations	.\reference\1\AssocRuleMining.java	/^	private int getCombinations(short[] set) {$/;"	m	class:AssocRuleMining	file:
+getConfidence	.\reference\1\TotalSupportTree.java	/^	protected double getConfidence(short[] antecedent, double support) {$/;"	m	class:TotalSupportTree
+getHeaderTable	.\src\model\FPTree.java	/^	public Vector<FPNode> getHeaderTable() {$/;"	m	class:FPTree
+getItem	.\src\model\FPNode.java	/^	public char getItem() {$/;"	m	class:FPNode
+getItem	.\src\model\FPNodeContainer.java	/^	public char getItem() {$/;"	m	class:FPNodeContainer
+getItemName	.\src\model\FPHeaderTableColumn.java	/^	public char getItemName() {$/;"	m	class:FPHeaderTableColumn
+getItemset	.\src\model\FPSupportedSets.java	/^	public char[] getItemset() {$/;"	m	class:FPSupportedSets
+getMinsup	.\src\model\FPTree.java	/^	public int getMinsup() {$/;"	m	class:FPTree
+getNodeLink	.\src\model\FPHeaderTableColumn.java	/^	public FPNodeContainer getNodeLink() {$/;"	m	class:FPHeaderTableColumn
+getNodeLink	.\src\model\FPNode.java	/^	public FPNode getNodeLink() {$/;"	m	class:FPNode
+getNodeLink	.\src\model\FPNodeContainer.java	/^	public FPNodeContainer getNodeLink() {$/;"	m	class:FPNodeContainer
+getNodelink	.\src\model\FPSupportedSets.java	/^	public FPSupportedSets getNodelink() {$/;"	m	class:FPSupportedSets
+getNumSupOneItemSets	.\reference\1\AssocRuleMining.java	/^	protected int getNumSupOneItemSets() {$/;"	m	class:AssocRuleMining
+getNumberOfLines	.\reference\1\AssocRuleMining.java	/^	protected int getNumberOfLines(String nameOfFile) throws IOException {$/;"	m	class:AssocRuleMining
+getNumberOfNodes	.\reference\1\TtreeNode.java	/^    public static int getNumberOfNodes() {$/;"	m	class:TtreeNode
+getParent	.\src\model\FPNode.java	/^	public FPNode getParent() {$/;"	m	class:FPNode
+getParent	.\src\model\FPNodeContainer.java	/^	public FPNodeContainer getParent() {$/;"	m	class:FPNodeContainer
+getRoot	.\src\model\FPTree.java	/^	public FPNode getRoot() {$/;"	m	class:FPTree
+getSupForIsetInTtree2	.\reference\1\TotalSupportTree.java	/^	private int getSupForIsetInTtree2(short[] itemSet, int index,$/;"	m	class:TotalSupportTree	file:
+getSupport	.\src\model\FPColumnCounts.java	/^		public int getSupport() {$/;"	m	class:FPColumnCounts
+getSupport	.\src\model\FPNode.java	/^	public int getSupport() {$/;"	m	class:FPNode
+getSupport	.\src\model\FPNodeContainer.java	/^	public int getSupport() {$/;"	m	class:FPNodeContainer
+getSupport	.\src\model\FPSupportedSets.java	/^	public int getSupport() {$/;"	m	class:FPSupportedSets
+getSupportForItemSetInTtree	.\reference\1\TotalSupportTree.java	/^	protected int getSupportForItemSetInTtree(short[] itemSet) {$/;"	m	class:TotalSupportTree
+growth	.\src\model\FPTree.java	/^	public void growth() {$/;"	m	class:FPTree
+growth	.\src\model\FPTree.java	/^	public void growth(FPNode root, String base, Vector<FPNode> headerTable) {$/;"	m	class:FPTree
+haveDataFlag	.\reference\1\AssocRuleMining.java	/^	private boolean haveDataFlag = false;$/;"	f	class:AssocRuleMining	file:
+headerTable	.\reference\1\FPtree.java	/^	protected FPgrowthHeaderTable[] headerTable;$/;"	f	class:FPtree
+headerTable	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^    Vector<FPtree> headerTable;$/;"	f	class:FPGrowth
+headerTable	.\src\model\FPTree.java	/^	private Vector<FPNode> headerTable = new Vector<FPNode>();$/;"	f	class:FPTree	file:
+idArgument	.\reference\1\AssocRuleMining.java	/^	protected void idArgument(String argument) {$/;"	m	class:AssocRuleMining
+idInputDataOrdering	.\reference\1\AssocRuleMining.java	/^	public void idInputDataOrdering() {$/;"	m	class:AssocRuleMining
+inputDataSet	.\reference\1\AssocRuleMining.java	/^	public void inputDataSet() {$/;"	m	class:AssocRuleMining
+inputFormatOkFlag	.\reference\1\AssocRuleMining.java	/^	protected boolean inputFormatOkFlag = true;$/;"	f	class:AssocRuleMining
+insert	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^    private void insert(Vector<String> pattern_vector, int count_of_pattern, FPtree conditional_fptree, Vector<FPtree> conditional_headerTable) {$/;"	m	class:FPGrowth	file:
+insert	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^    void insert(Vector<String> transactionSortedbyFrequencies, FPtree fptree, Vector<FPtree> headerTable) {$/;"	m	class:FPGrowth
+insertRuleintoRulelist	.\reference\1\AssocRuleMining.java	/^	protected void insertRuleintoRulelist(short[] antecedent,$/;"	m	class:AssocRuleMining
+isOrderedFlag	.\reference\1\AssocRuleMining.java	/^	protected boolean isOrderedFlag = false;$/;"	f	class:AssocRuleMining
+isPrunedFlag	.\reference\1\AssocRuleMining.java	/^	protected boolean isPrunedFlag = false;$/;"	f	class:AssocRuleMining
+isRoot	.\reference\FP-Growth-Java-master\src\fpgrowth\FPtree.java	/^    boolean isRoot(){$/;"	m	class:FPtree
+item	.\reference\FP-Growth-Java-master\src\fpgrowth\FPtree.java	/^    String item;$/;"	f	class:FPtree
+item	.\src\model\FPNode.java	/^	private char item;$/;"	f	class:FPNode	file:
+item	.\src\model\FPNodeContainer.java	/^	private char item;$/;"	f	class:FPNodeContainer	file:
+itemCount	.\reference\1\FPtree.java	/^		private int itemCount;$/;"	f	class:FPtree.FPgrowthItemPrefixSubtreeNode	file:
+itemName	.\reference\1\FPtree.java	/^		private short itemName;$/;"	f	class:FPtree.FPgrowthItemPrefixSubtreeNode	file:
+itemName	.\reference\1\FPtree.java	/^		protected short itemName;$/;"	f	class:FPtree.FPgrowthHeaderTable
+itemName	.\src\model\FPHeaderTableColumn.java	/^	private char itemName;$/;"	f	class:FPHeaderTableColumn	file:
+itemSet	.\reference\1\FPtree.java	/^		private short[] itemSet = null;$/;"	f	class:FPtree.FPgrowthSupportedSets	file:
+itemset	.\src\model\FPSupportedSets.java	/^	private char[] itemset;$/;"	f	class:FPSupportedSets	file:
+localHeadTabUnordered	.\reference\1\FPtree.java	/^	private FPgrowthHeaderTable[] localHeadTabUnordered($/;"	m	class:FPtree	file:
+main	.\reference\FP-Growth-Java-master\src\fpgrowth\Main.java	/^    public static void main(String[] args) throws FileNotFoundException {$/;"	m	class:Main
+main	.\src\fpgrowth\FPGrowth.java	/^	public static void main(String[] args) {$/;"	m	class:FPGrowth
+minSupport	.\reference\1\AssocRuleMining.java	/^	protected double minSupport = 0;$/;"	f	class:AssocRuleMining
+minsup	.\src\fpgrowth\FPGrowth.java	/^	private int minsup = 3;$/;"	f	class:FPGrowth	file:
+minsup	.\src\model\FPTree.java	/^	private int minsup;$/;"	f	class:FPTree	file:
+model	.\src\model\FPColumnCounts.java	/^package model;$/;"	p
+model	.\src\model\FPHeaderTableColumn.java	/^package model;$/;"	p
+model	.\src\model\FPNode.java	/^package model;$/;"	p
+model	.\src\model\FPNodeContainer.java	/^package model;$/;"	p
+model	.\src\model\FPSupportedSets.java	/^package model;$/;"	p
+model	.\src\model\FPTree.java	/^package model;$/;"	p
+next	.\reference\1\AssocRuleMining.java	/^		RuleNode next = null;$/;"	f	class:AssocRuleMining.RuleNode
+next	.\reference\FP-Growth-Java-master\src\fpgrowth\FPtree.java	/^    FPtree next;$/;"	f	class:FPtree
+node	.\reference\1\FPtree.java	/^		private FPgrowthItemPrefixSubtreeNode node = null;$/;"	f	class:FPtree.FPtreeNode	file:
+nodeLink	.\reference\1\FPtree.java	/^		private FPgrowthItemPrefixSubtreeNode nodeLink = null;$/;"	f	class:FPtree.FPgrowthItemPrefixSubtreeNode	file:
+nodeLink	.\reference\1\FPtree.java	/^		private FPgrowthSupportedSets nodeLink = null;$/;"	f	class:FPtree.FPgrowthSupportedSets	file:
+nodeLink	.\reference\1\FPtree.java	/^		protected FPgrowthItemPrefixSubtreeNode nodeLink = null;$/;"	f	class:FPtree.FPgrowthHeaderTable
+nodeLink	.\src\model\FPHeaderTableColumn.java	/^	private FPNodeContainer nodeLink = null;$/;"	f	class:FPHeaderTableColumn	file:
+nodeLink	.\src\model\FPNode.java	/^	private FPNode nodeLink;$/;"	f	class:FPNode	file:
+nodeLink	.\src\model\FPNodeContainer.java	/^	private FPNodeContainer nodeLink;$/;"	f	class:FPNodeContainer	file:
+nodelink	.\src\model\FPSupportedSets.java	/^	private FPSupportedSets nodelink;$/;"	f	class:FPSupportedSets	file:
+notMemberOf	.\reference\1\AssocRuleMining.java	/^	protected boolean notMemberOf(short number, short[] itemSet) {$/;"	m	class:AssocRuleMining
+numCols	.\reference\1\AssocRuleMining.java	/^	protected int numCols = 0;$/;"	f	class:AssocRuleMining
+numFrequentsets	.\reference\1\TotalSupportTree.java	/^	protected int numFrequentsets = 0;$/;"	f	class:TotalSupportTree
+numOneItemSets	.\reference\1\AssocRuleMining.java	/^	protected int numOneItemSets = 0;$/;"	f	class:AssocRuleMining
+numRows	.\reference\1\AssocRuleMining.java	/^	protected int numRows = 0;$/;"	f	class:AssocRuleMining
+numUpdates	.\reference\1\TotalSupportTree.java	/^	protected long numUpdates = 0l;$/;"	f	class:TotalSupportTree
+numberOfNodes	.\reference\1\FPtree.java	/^	private int numberOfNodes;$/;"	f	class:FPtree	file:
+numberOfNodes	.\reference\1\TtreeNode.java	/^    public static int numberOfNodes = 0;$/;"	f	class:TtreeNode
+openFileName	.\reference\1\AssocRuleMining.java	/^	protected void openFileName(String nameOfFile) {$/;"	m	class:AssocRuleMining
+openFilePath	.\reference\1\AssocRuleMining.java	/^	protected void openFilePath() {$/;"	m	class:AssocRuleMining
+orderCountArray	.\reference\1\AssocRuleMining.java	/^	private void orderCountArray(int[][] countArray) {$/;"	m	class:AssocRuleMining	file:
+orderFirstNofCountArray	.\reference\1\AssocRuleMining.java	/^	protected void orderFirstNofCountArray(int[][] countArray, int endIndex) {$/;"	m	class:AssocRuleMining
+orderLocalHeaderTable	.\reference\1\FPtree.java	/^	private void orderLocalHeaderTable(FPgrowthHeaderTable[] localHeaderTable,$/;"	m	class:FPtree	file:
+outputAncesterTrail	.\reference\1\FPtree.java	/^	private void outputAncesterTrail() {$/;"	m	class:FPtree	file:
+outputAncesterTrail	.\reference\1\FPtree.java	/^	private void outputAncesterTrail(FPgrowthHeaderTable[] tableRef) {$/;"	m	class:FPtree	file:
+outputAncestorTrail1	.\reference\1\FPtree.java	/^	private void outputAncestorTrail1(FPgrowthItemPrefixSubtreeNode ref) {$/;"	m	class:FPtree	file:
+outputAncestorTrail2	.\reference\1\FPtree.java	/^	private void outputAncestorTrail2(FPgrowthItemPrefixSubtreeNode ref) {$/;"	m	class:FPtree	file:
+outputColumnCount	.\reference\1\FPtree.java	/^	private void outputColumnCount(FPgrowthColumnCounts[] countArray) {$/;"	m	class:FPtree	file:
+outputConversionArrays	.\reference\1\AssocRuleMining.java	/^	public void outputConversionArrays() {$/;"	m	class:AssocRuleMining
+outputDataArray	.\reference\1\AssocRuleMining.java	/^	protected void outputDataArray(short[][] dataSet) {$/;"	m	class:AssocRuleMining
+outputDataArray	.\reference\1\AssocRuleMining.java	/^	public void outputDataArray() {$/;"	m	class:AssocRuleMining
+outputDataArraySize	.\reference\1\AssocRuleMining.java	/^	public void outputDataArraySize() {$/;"	m	class:AssocRuleMining
+outputDuration	.\reference\1\AssocRuleMining.java	/^	public double outputDuration(double time1, double time2) {$/;"	m	class:AssocRuleMining
+outputFPtree	.\reference\1\FPtree.java	/^	public void outputFPtree() {$/;"	m	class:FPtree
+outputFPtreeNode	.\reference\1\FPtree.java	/^	private void outputFPtreeNode(FPtreeNode ref) {$/;"	m	class:FPtree	file:
+outputFPtreeNode1	.\reference\1\FPtree.java	/^	private void outputFPtreeNode1() {$/;"	m	class:FPtree	file:
+outputFPtreeNode2	.\reference\1\FPtree.java	/^	private void outputFPtreeNode2(FPtreeNode ref[], String nodeID) {$/;"	m	class:FPtree	file:
+outputFPtreeStorage	.\reference\1\FPtree.java	/^	public void outputFPtreeStorage() {$/;"	m	class:FPtree
+outputFrequentSets	.\reference\1\TotalSupportTree.java	/^	private int outputFrequentSets(int number, String itemSetSofar, int size,$/;"	m	class:TotalSupportTree	file:
+outputFrequentSets	.\reference\1\TotalSupportTree.java	/^	public void outputFrequentSets() {$/;"	m	class:TotalSupportTree
+outputItemPrefixSubtree	.\reference\1\FPtree.java	/^	private void outputItemPrefixSubtree(FPgrowthHeaderTable[] tableRef) {$/;"	m	class:FPtree	file:
+outputItemPrefixSubtree	.\reference\1\FPtree.java	/^	public void outputItemPrefixSubtree() {$/;"	m	class:FPtree
+outputItemPrefixSubtreeNode	.\reference\1\FPtree.java	/^	public void outputItemPrefixSubtreeNode(FPgrowthItemPrefixSubtreeNode ref) {$/;"	m	class:FPtree
+outputItemPrefixTree	.\reference\1\FPtree.java	/^	private int outputItemPrefixTree(FPgrowthItemPrefixSubtreeNode ref) {$/;"	m	class:FPtree	file:
+outputItemSet	.\reference\1\AssocRuleMining.java	/^	protected void outputItemSet(short[] itemSet) {$/;"	m	class:AssocRuleMining
+outputMenu	.\reference\1\AssocRuleMining.java	/^	protected void outputMenu() {$/;"	m	class:AssocRuleMining
+outputNumFreqSets	.\reference\1\TotalSupportTree.java	/^	public void outputNumFreqSets() {$/;"	m	class:TotalSupportTree
+outputNumUpdates	.\reference\1\TotalSupportTree.java	/^	public void outputNumUpdates() {$/;"	m	class:TotalSupportTree
+outputRule	.\reference\1\AssocRuleMining.java	/^	private void outputRule(RuleNode rule) {$/;"	m	class:AssocRuleMining	file:
+outputRules	.\reference\1\AssocRuleMining.java	/^	public void outputRules() {$/;"	m	class:AssocRuleMining
+outputRules	.\reference\1\AssocRuleMining.java	/^	public void outputRules(RuleNode ruleList) {$/;"	m	class:AssocRuleMining
+outputRulesWithDefault	.\reference\1\AssocRuleMining.java	/^	public void outputRulesWithDefault() {$/;"	m	class:AssocRuleMining
+outputSettings	.\reference\1\AssocRuleMining.java	/^	protected void outputSettings() {$/;"	m	class:AssocRuleMining
+outputSettings2	.\reference\1\AssocRuleMining.java	/^	protected void outputSettings2() {$/;"	m	class:AssocRuleMining
+outputStorage	.\reference\1\TotalSupportTree.java	/^	public void outputStorage() {$/;"	m	class:TotalSupportTree
+outputSuppAndConf	.\reference\1\AssocRuleMining.java	/^	public void outputSuppAndConf() {$/;"	m	class:AssocRuleMining
+outputTtree	.\reference\1\TotalSupportTree.java	/^	private void outputTtree(String number, String itemSetSofar,$/;"	m	class:TotalSupportTree	file:
+outputTtree	.\reference\1\TotalSupportTree.java	/^	public void outputTtree() {$/;"	m	class:TotalSupportTree
+outputTtreeStats	.\reference\1\TotalSupportTree.java	/^	public void outputTtreeStats() {$/;"	m	class:TotalSupportTree
+parent	.\reference\FP-Growth-Java-master\src\fpgrowth\FPtree.java	/^    FPtree parent;$/;"	f	class:FPtree
+parent	.\src\model\FPNode.java	/^	private FPNode parent;$/;"	f	class:FPNode	file:
+parent	.\src\model\FPNodeContainer.java	/^	private FPNodeContainer parent;$/;"	f	class:FPNodeContainer	file:
+parentRef	.\reference\1\FPtree.java	/^		private FPgrowthItemPrefixSubtreeNode parentRef = null;$/;"	f	class:FPtree.FPgrowthItemPrefixSubtreeNode	file:
+preProcessing	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^    private void preProcessing(File file, Map<String, Integer> itemsMaptoFrequencies, Scanner input, List<String> sortedItemsbyFrequencies, Vector<String> itemstoRemove) throws FileNotFoundException {$/;"	m	class:FPGrowth	file:
+print	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^    private void print() throws FileNotFoundException {$/;"	m	class:FPGrowth	file:
+printTree	.\src\fpgrowth\FPGrowth.java	/^	public void printTree() {$/;"	m	class:FPGrowth
+processInputLine	.\reference\1\AssocRuleMining.java	/^	private boolean processInputLine(String line, int rowIndex) {$/;"	m	class:AssocRuleMining	file:
+pruneAncestorCodes	.\reference\1\FPtree.java	/^	private void pruneAncestorCodes(FPgrowthColumnCounts[] countArray) {$/;"	m	class:FPtree	file:
+putChild	.\src\model\FPNode.java	/^	public void putChild(FPNode child) {$/;"	m	class:FPNode
+readFile	.\reference\1\AssocRuleMining.java	/^	protected void readFile() {$/;"	m	class:AssocRuleMining
+readInputDataSet	.\reference\1\AssocRuleMining.java	/^	protected void readInputDataSet(String fName) throws IOException {$/;"	m	class:AssocRuleMining
+readInputDataSet	.\reference\1\AssocRuleMining.java	/^	public void readInputDataSet() throws IOException {$/;"	m	class:AssocRuleMining
+readInputDataSetSeg	.\reference\1\AssocRuleMining.java	/^	protected void readInputDataSetSeg(String fName, int startRowIndex,$/;"	m	class:AssocRuleMining
+realloc1	.\reference\1\AssocRuleMining.java	/^	protected short[] realloc1(short[] oldItemSet, short newElement) {$/;"	m	class:AssocRuleMining
+realloc2	.\reference\1\AssocRuleMining.java	/^	protected short[] realloc2(short[] oldItemSet, short newElement) {$/;"	m	class:AssocRuleMining
+reallocFPtreeChildRefs	.\reference\1\FPtree.java	/^	private FPtreeNode[] reallocFPtreeChildRefs(FPtreeNode[] oldArray,$/;"	m	class:FPtree	file:
+reallocInsert	.\reference\1\AssocRuleMining.java	/^	protected short[] reallocInsert(short[] oldItemSet, short newElement) {$/;"	m	class:AssocRuleMining
+recastInputData	.\reference\1\AssocRuleMining.java	/^	public void recastInputData() {$/;"	m	class:AssocRuleMining
+recastInputDataAndPruneUnsupportedAtts	.\reference\1\AssocRuleMining.java	/^	public void recastInputDataAndPruneUnsupportedAtts() {$/;"	m	class:AssocRuleMining
+reconversionArray	.\reference\1\AssocRuleMining.java	/^	protected short[] reconversionArray = null;$/;"	f	class:AssocRuleMining
+reconvertItem	.\reference\1\AssocRuleMining.java	/^	protected short reconvertItem(short item) {$/;"	m	class:AssocRuleMining
+reconvertItemSet	.\reference\1\AssocRuleMining.java	/^	protected short[] reconvertItemSet(short[] itemSet) {$/;"	m	class:AssocRuleMining
+removeElementN	.\reference\1\AssocRuleMining.java	/^	protected short[] removeElementN(short[] oldItemSet, int n) {$/;"	m	class:AssocRuleMining
+resizeInputData	.\reference\1\AssocRuleMining.java	/^	public void resizeInputData(double percentage) {$/;"	m	class:AssocRuleMining
+root	.\reference\FP-Growth-Java-master\src\fpgrowth\FPtree.java	/^    boolean root;$/;"	f	class:FPtree
+root	.\src\model\FPTree.java	/^	private FPNode root;$/;"	f	class:FPTree	file:
+rootNode	.\reference\1\FPtree.java	/^	protected FPtreeNode rootNode = null;$/;"	f	class:FPtree
+setChildren	.\src\model\FPNode.java	/^	public void setChildren(Vector<FPNode> children) {$/;"	m	class:FPNode
+setHeaderTable	.\src\model\FPTree.java	/^	public void setHeaderTable(Vector<FPNode> headerTable) {$/;"	m	class:FPTree
+setItem	.\src\model\FPNode.java	/^	public void setItem(char item) {$/;"	m	class:FPNode
+setItem	.\src\model\FPNodeContainer.java	/^	public void setItem(char item) {$/;"	m	class:FPNodeContainer
+setItemName	.\src\model\FPHeaderTableColumn.java	/^	public void setItemName(char itemName) {$/;"	m	class:FPHeaderTableColumn
+setItemset	.\src\model\FPSupportedSets.java	/^	public void setItemset(char[] itemset) {$/;"	m	class:FPSupportedSets
+setMinsup	.\src\model\FPTree.java	/^	public void setMinsup(int minsup) {$/;"	m	class:FPTree
+setNodeLink	.\src\model\FPHeaderTableColumn.java	/^	public void setNodeLink(FPNodeContainer nodeLink) {$/;"	m	class:FPHeaderTableColumn
+setNodeLink	.\src\model\FPNode.java	/^	public void setNodeLink(FPNode nodeLink) {$/;"	m	class:FPNode
+setNodeLink	.\src\model\FPNodeContainer.java	/^	public void setNodeLink(FPNodeContainer nodeLink) {$/;"	m	class:FPNodeContainer
+setNodelink	.\src\model\FPSupportedSets.java	/^	public void setNodelink(FPSupportedSets nodelink) {$/;"	m	class:FPSupportedSets
+setNumOneItemSets	.\reference\1\TotalSupportTree.java	/^	public void setNumOneItemSets() {$/;"	m	class:TotalSupportTree
+setParent	.\src\model\FPNode.java	/^	public void setParent(FPNode parent) {$/;"	m	class:FPNode
+setParent	.\src\model\FPNodeContainer.java	/^	public void setParent(FPNodeContainer parent) {$/;"	m	class:FPNodeContainer
+setRoot	.\src\model\FPTree.java	/^	public void setRoot(FPNode root) {$/;"	m	class:FPTree
+setSupport	.\src\model\FPColumnCounts.java	/^		public void setSupport(int support) {$/;"	m	class:FPColumnCounts
+setSupport	.\src\model\FPNode.java	/^	public void setSupport(int support) {$/;"	m	class:FPNode
+setSupport	.\src\model\FPNodeContainer.java	/^	public void setSupport(int support) {$/;"	m	class:FPNodeContainer
+setSupport	.\src\model\FPSupportedSets.java	/^	public void setSupport(int support) {$/;"	m	class:FPSupportedSets
+sortItemSet	.\reference\1\AssocRuleMining.java	/^	protected void sortItemSet(short[] itemSet) {$/;"	m	class:AssocRuleMining
+sortedFlist	.\src\fpgrowth\FPGrowth.java	/^	private TreeMap<Character, Integer> sortedFlist = new TreeMap<Character, Integer>(bvc);$/;"	f	class:FPGrowth	file:
+startMining	.\reference\1\FPtree.java	/^	private void startMining(FPgrowthHeaderTable[] tableRef,$/;"	m	class:FPtree	file:
+startMining	.\reference\1\FPtree.java	/^	protected void startMining(FPgrowthItemPrefixSubtreeNode nodeLink,$/;"	m	class:FPtree
+startMining	.\reference\1\FPtree.java	/^	public void startMining() {$/;"	m	class:FPtree
+startRulelist	.\reference\1\AssocRuleMining.java	/^	protected RuleNode startRulelist = null;$/;"	f	class:AssocRuleMining
+startTempSets	.\reference\1\FPtree.java	/^	private static FPgrowthSupportedSets startTempSets = null;$/;"	f	class:FPtree	file:
+startTtreeRef	.\reference\1\TotalSupportTree.java	/^	protected TtreeNode[] startTtreeRef;$/;"	f	class:TotalSupportTree
+support	.\reference\1\AssocRuleMining.java	/^	protected double support = 20.0;$/;"	f	class:AssocRuleMining
+support	.\reference\1\FPtree.java	/^		private int support = 0;$/;"	f	class:FPtree.FPgrowthColumnCounts	file:
+support	.\reference\1\FPtree.java	/^		private int support;$/;"	f	class:FPtree.FPgrowthSupportedSets	file:
+support	.\reference\1\TtreeNode.java	/^    public int support = 0;$/;"	f	class:TtreeNode
+support	.\src\model\FPColumnCounts.java	/^		private int support = 0;$/;"	f	class:FPColumnCounts	file:
+support	.\src\model\FPNode.java	/^	private int support;$/;"	f	class:FPNode	file:
+support	.\src\model\FPNodeContainer.java	/^	private int support;$/;"	f	class:FPNodeContainer	file:
+support	.\src\model\FPSupportedSets.java	/^	private int support;$/;"	f	class:FPSupportedSets	file:
+tableHasItem	.\src\model\FPTree.java	/^	int tableHasItem(char item) {$/;"	m	class:FPTree
+tempIndex	.\reference\1\FPtree.java	/^	private int tempIndex = 0;$/;"	f	class:FPtree	file:
+threshold	.\reference\FP-Growth-Java-master\src\fpgrowth\FPGrowth.java	/^    int threshold;$/;"	f	class:FPGrowth
+threshold	.\reference\FP-Growth-Java-master\src\fpgrowth\Main.java	/^    static int threshold = 10000;$/;"	f	class:Main
+toString	.\src\model\FPHeaderTableColumn.java	/^	public String toString() {$/;"	m	class:FPHeaderTableColumn
+toString	.\src\model\FPNode.java	/^	public String toString() {$/;"	m	class:FPNode
+toString	.\src\model\FPNodeContainer.java	/^	public String toString() {$/;"	m	class:FPNodeContainer
+toString	.\src\model\FPTree.java	/^	public String toString() {$/;"	m	class:FPTree
+tree	.\src\fpgrowth\FPGrowth.java	/^	private FPTree tree;$/;"	f	class:FPGrowth	file:
+twoDecPlaces	.\reference\1\AssocRuleMining.java	/^	protected double twoDecPlaces(double number) {$/;"	m	class:AssocRuleMining
