@@ -23,6 +23,15 @@ public class FPNode {
 		this.parent = parent;
 		nodeLink = null;
 	}
+	
+	public FPNode(char item, FPNode nodeLink) {
+		this.item = item;
+		this.nodeLink = nodeLink;
+	}
+	
+	public FPNode(char item) {
+		this.item = item;
+	}
 
 	public int getSupport() {
 		return support;
