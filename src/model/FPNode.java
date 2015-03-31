@@ -89,7 +89,7 @@ public class FPNode {
 	@Override
 	public String toString() {
 		return "FPNode [support=" + support + ", item=" + item + ", parent="
-				+ parent + ", nodeLink=" + nodeLink + ", children=" + children
+				+ parent + ", nodeLink=" + nodeLink// + ", children=" + children
 				+ "]";
 	}
 
