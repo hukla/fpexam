@@ -17,58 +17,88 @@ public class FPTree {
 		root = null;
 	}
 
-	public FPTree(String[] DB, Map<Character, Integer> flist, int minsup) {
+	public FPTree(Vector<String> DBVector, Map<Character, Integer> flist, int minsup) {
 		root = new FPNode();
 		this.minsup = minsup;
+		
+		for(char itemForTable : flist.keySet()) {
+			headerTable.add(new FPNode(itemForTable));
+		}
+		
+		System.out.println("header table : "+headerTable);
 
 		FPNode tempNode;
 		FPNode newNode;
 		char item;
 
-		for (String t : DB) {
+		for (String transaction : DBVector) {
 			tempNode = root;
-
-			for (int i = 0; i < t.length(); i++) {
-				item = t.charAt(i);
-				int cursup = 1;
-				int j = 0;
+			
+			StringTokenizer tokenizer = new StringTokenizer(transaction);
+			while(tokenizer.hasMoreTokens()) {
+				item = tokenizer.nextToken().charAt(0);
+				int childIdx = tempNode.getChildren().indexOf(item);
+				int cursup = (childIdx != -1) ? tempNode.getChildren().get(childIdx).getSupport() + 1 : 1;
 				
-				if(!tempNode.getChildren().isEmpty()) {
-					for (; j < tempNode.getChildren().size(); j++) {
-						if (tempNode.getChildren().get(j).getItem() == item) {
-							cursup = tempNode.getChildren().get(j).getSupport() + 1;
-							break;
-						}
-					}
-				}
-
 				newNode = new FPNode(cursup, item, tempNode);
-
-				if (cursup == 1) {
+				
+				if(cursup == 1) {
 					tempNode.putChild(newNode);
-
-					int tableIdx = tableHasItem(item);
-					if (tableIdx == -1) {
-						headerTable.add(new FPNode(item, newNode));
-					} else {
-						FPNode tempNodeLink = headerTable.get(tableIdx).getNodeLink();
-						while (tempNodeLink.getNodeLink() != null) {
-							tempNodeLink = tempNodeLink.getNodeLink();
-						}
-						tempNodeLink.setNodeLink(newNode);
-					}
-					
-					tempNode = newNode;
 				} else {
-					tempNode.getChildren().get(j).setSupport(cursup);
-					
-					tempNode = tempNode.getChildren().get(j);
+					tempNode.getChildren().set(childIdx, newNode);
 				}
 				
-			}
+				int tableIdx = headerTable.indexOf(item); // TODO item이 있는 FPNode를 찾아야댐 개빡침
+				FPNode tempNodeLink = headerTable.get(tableIdx);
+				
+				while(tempNodeLink.getNodeLink() != null) tempNodeLink = tempNodeLink.getNodeLink();
+					
+				tempNodeLink.setNodeLink(newNode);
+				tempNode = newNode;
+			} // done
+//
+//			for (int i = 0; i < transaction.length(); i++) {
+//				item = transaction.charAt(i);
+//				int cursup = 1;
+//				int j = 0;
+//				
+//				if(!tempNode.getChildren().isEmpty()) {
+//					for (; j < tempNode.getChildren().size(); j++) {
+//						if (tempNode.getChildren().get(j).getItem() == item) {
+//							cursup = tempNode.getChildren().get(j).getSupport() + 1;
+//							break;
+//						}
+//					}
+//				}
+//
+//				newNode = new FPNode(cursup, item, tempNode);
+//
+//				if (cursup == 1) {
+//					tempNode.putChild(newNode);
+//
+//					int tableIdx = tableHasItem(item);
+//					if (tableIdx == -1) {
+//						headerTable.add(new FPNode(item, newNode));
+//					} else {
+//						FPNode tempNodeLink = headerTable.get(tableIdx).getNodeLink();
+//						while (tempNodeLink.getNodeLink() != null) {
+//							tempNodeLink = tempNodeLink.getNodeLink();
+//						}
+//						tempNodeLink.setNodeLink(newNode);
+//					}
+//					
+//					tempNode = newNode;
+//				} else {
+//					tempNode.getChildren().get(j).setSupport(cursup);
+//					
+//					tempNode = tempNode.getChildren().get(j);
+//				}
+//				
+//			}
+//		}
+//		
+////		System.out.println(headerTable);
 		}
-		
-//		System.out.println(headerTable);
 	}
 
 	public FPTree(Vector<FPNode> headerTable, FPNode root, int minsup) {
@@ -92,6 +122,7 @@ public class FPTree {
 	
 	public void growth(FPNode root, String base, Vector<FPNode> headerTable) {
 		for(FPNode iteminTree : headerTable) {
+			System.out.println(iteminTree);
 			String currentPattern = (base != null ? base : "") + (base != null ? " " : "") + iteminTree.getItem();
 			int supcur = 0; // support of current pattern
 			Map<String, Integer> conditionalPatternBase = new HashMap<String, Integer>();
@@ -158,20 +189,57 @@ public class FPTree {
 	private FPNode condFPtreeConstructor(Map<String, Integer> conditionalPatternBase, Map<Character, Integer> conditionalItemsMaptoFreq, Vector<FPNode> condHeaderTable) {
 		
 		//TODO
-		FPNode condFPtree = new FPNode();
+		FPNode condFPtree = new FPNode(); // root
+		
+		FPNode tempNode;
+		FPNode newNode;
+		char item;
 		
 		for(String pattern : conditionalPatternBase.keySet()) {
+			tempNode = condFPtree;
+			
+			
 			Vector<Character> patternVector = new Vector<Character>();
 			StringTokenizer tokenizer = new StringTokenizer(pattern);
 			while(tokenizer.hasMoreTokens()) {
-				char item = tokenizer.nextToken().charAt(0);
+				item = tokenizer.nextToken().charAt(0);
 				if(conditionalItemsMaptoFreq.get(item) > minsup) {
 					patternVector.addElement(item);
 				}
+			} // creating pattern vector
+			
+			for(char p : patternVector) {
+				int childIdx = tempNode.getChildren().indexOf(p);
+				int cursup = (childIdx != -1) ? tempNode.getChildren().get(childIdx).getSupport() + 1 : 1;
+				
+				// create new node to put
+				newNode = new FPNode(cursup, p, tempNode);
+				
+				// put newNode 
+				if(cursup == 1) {
+					// if tempNode doesn't have p as a child
+					tempNode.putChild(newNode);
+				} else {
+					// if tempNode does have p as a child
+					tempNode.getChildren().set(childIdx, newNode);
+				}
+				
+				// put newNode in the header table
+				int tableIdx = condHeaderTable.indexOf(p);
+				FPNode tempNodeLink = condHeaderTable.get(tableIdx).getNodeLink();
+				
+				while(tempNodeLink.getNodeLink() != null) {
+					tempNodeLink = tempNodeLink.getNodeLink();
+				}
+				
+				tempNodeLink.setNodeLink(newNode);
+				tempNode = newNode;
+
 			}
+			
 		}
 		
-		return null;
+		return condFPtree; 
 	}
 
 	public Vector<FPNode> getHeaderTable() {
@@ -196,6 +264,16 @@ public class FPTree {
 
 	public void setRoot(FPNode root) {
 		this.root = root;
+	}
+
+	
+	
+	public Map<String, Integer> getFreqPatterns() {
+		return freqPatterns;
+	}
+
+	public void setFreqPatterns(Map<String, Integer> freqPatterns) {
+		this.freqPatterns = freqPatterns;
 	}
 
 	@Override

@@ -6,7 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.StringTokenizer;
 import java.util.TreeMap;
+import java.util.Vector;
 
 import model.FPHeaderTableColumn;
 import model.FPNode;
@@ -16,70 +18,94 @@ import model.FPTree;
 public class FPGrowth {
 	
 	private String []DB = {"facdgimp", "abcflmo", "bfhjo", "bcksp", "afcelpmn"};
-	private Map<Character, Integer> flist = new HashMap<Character, Integer>();
-	private ValueComparator bvc = new ValueComparator(flist);
-	private TreeMap<Character, Integer> sortedFlist = new TreeMap<Character, Integer>(bvc);
 	private int minsup = 3;
 	private FPTree tree;
 	
-	public void fpgrowth() {
-		// scan data and find support for each item
-		for(String T : DB) {
-			for(int i = 0; i < T.length(); i++) {
-				char a = T.charAt(i);
-				if(flist.containsKey(a)) {
-					flist.put(a, flist.get(a)+1);
+	public void dbvectorConstructor(String []DB, Vector<String> DBVector) {
+		for(String t : DB) {
+			String result = null;
+			for(int i = 0; i < t.length(); i++) {
+				result = (result != null) ? result + " " + t.charAt(i) : ""+t.charAt(i);
+			}
+			DBVector.addElement(result);
+		}
+		System.out.println(DBVector);
+	}
+	
+	private void preProcessing(Vector<String> DBVector, Map<Character, Integer> itemsMapToFrequencies, TreeMap<Character, Integer> sortedItemsByFrequencies, Vector<Character> itemsToRemove) {
+		// count the number of items
+		for(String transaction : DBVector) {
+			StringTokenizer tokenizer = new StringTokenizer(transaction);
+			
+			while(tokenizer.hasMoreTokens()) {
+				char item = tokenizer.nextToken().charAt(0);
+				if(itemsMapToFrequencies.containsKey(item)) {
+					itemsMapToFrequencies.put(item, itemsMapToFrequencies.get(item) + 1);
 				} else {
-					flist.put(a, 1);
+					itemsMapToFrequencies.put(item, 1);
 				}
 			}
 		}
 		
 		// discard infrequent items;
-		Iterator<Character> it = flist.keySet().iterator();
+		Iterator<Character> it = itemsMapToFrequencies.keySet().iterator();
 		
-		List<Character> infreq = new ArrayList<Character>();
 		while(it.hasNext()) {
-			char c = it.next();
+			char item = it.next();
 			
-			if(flist.get(c) < minsup) {
-				infreq.add(c);
+			if(itemsMapToFrequencies.get(item) < minsup) {
+				itemsToRemove.add(item);
 			}
 		}
 		
-		for(int i = 0; i < infreq.size(); i++) {
-			flist.remove(infreq.get(i));
-		}
-
 		// sort freq. items in decreasing order
-		sortedFlist.putAll(flist);
+		sortedItemsByFrequencies.putAll(itemsMapToFrequencies);
 		
-		System.out.println(sortedFlist);
-		// sort transactions accord. sortedFlist
+		for(int i = 0; i < itemsToRemove.size(); i++) {
+			sortedItemsByFrequencies.remove(itemsToRemove.get(i));
+		}
 		
-		for(int i = 0; i < DB.length; i++) {
-			it = sortedFlist.descendingKeySet().iterator();
-			String t = DB[i];
+		System.out.println("1. Sorted Items By Frequenices\n\t"+sortedItemsByFrequencies);
+		
+		// sort DB according to the frequency
+		for(String transaction : DBVector) {
+			it = sortedItemsByFrequencies.descendingKeySet().iterator();
 			while(it.hasNext()) {
-				char c = it.next();
-				if(t.indexOf(c) != -1) {
-					int idx = t.indexOf(c);
-					if(idx != t.length() - 1) {
-						DB[i] = c + t.substring(0, idx) + t.substring(idx+1);
+				char item = it.next();
+				if(transaction.indexOf(item) != -1) {
+					int idx = transaction.indexOf(item);
+					if(idx != transaction.length() - 1) {
+						transaction = transaction.substring(idx, idx + 2) + transaction.substring(0, idx) + transaction.substring(idx + 2);
 					} else {
-						t = c + t.substring(0, idx);
+						transaction = transaction.substring(idx) + transaction.substring(0, idx); 
 					}
 				}
 			}
 		}
 		
-		for(String t:DB) { System.out.println(t); }
+		System.out.println("2. sorted DB\n\t" + DBVector);
 		
-		// construct tree
-		tree = new FPTree(DB, sortedFlist, minsup);		
+	}
+	
+	public void fpgrowth() {
+		Vector<String> DBVector = new Vector<String>();
+		Map<Character, Integer> itemsMapToFrequencies = new HashMap<Character, Integer>();
+		ValueComparator bvc = new ValueComparator(itemsMapToFrequencies);
+		TreeMap<Character, Integer> sortedItemsByFrequencies = new TreeMap<Character, Integer>(bvc);
+		Vector<Character> itemsToRemove = new Vector<Character>(); 
+
+		// refactor strings in db
+		dbvectorConstructor(DB, DBVector);
+		preProcessing(DBVector, itemsMapToFrequencies, sortedItemsByFrequencies, itemsToRemove);
+		
+		// construct FPtree
+		tree = new FPTree(DBVector, itemsMapToFrequencies, minsup);		
 		
 		// mining
 		tree.growth();
+		
+		System.out.println("3. frequent patterns");
+		System.out.println("\t" + tree.getFreqPatterns());
 	}
 	
 	public void printTree() {
