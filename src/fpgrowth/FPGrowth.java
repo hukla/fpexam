@@ -58,17 +58,18 @@ public class FPGrowth {
 			}
 		}
 		
+		for(char itemTR : itemsToRemove) {
+			itemsMapToFrequencies.remove(itemTR);
+		}
+		
 		// sort freq. items in decreasing order
 		sortedItemsByFrequencies.putAll(itemsMapToFrequencies);
-		
-		for(int i = 0; i < itemsToRemove.size(); i++) {
-			sortedItemsByFrequencies.remove(itemsToRemove.get(i));
-		}
 		
 		System.out.println("1. Sorted Items By Frequenices\n\t"+sortedItemsByFrequencies);
 		
 		// sort DB according to the frequency
-		for(String transaction : DBVector) {
+		for(int i = 0; i < DBVector.size(); i++) {
+			String transaction = DBVector.get(i);
 			it = sortedItemsByFrequencies.descendingKeySet().iterator();
 			while(it.hasNext()) {
 				char item = it.next();
@@ -77,11 +78,17 @@ public class FPGrowth {
 					if(idx != transaction.length() - 1) {
 						transaction = transaction.substring(idx, idx + 2) + transaction.substring(0, idx) + transaction.substring(idx + 2);
 					} else {
-						transaction = transaction.substring(idx) + transaction.substring(0, idx); 
+						transaction = transaction.substring(idx) + " " + transaction.substring(0, idx); 
 					}
 				}
 			}
+			if(transaction.endsWith(" ")) {
+				transaction = transaction.substring(0, transaction.length() - 3);
+			}
+			
+			DBVector.set(i, transaction);
 		}
+		
 		
 		System.out.println("2. sorted DB\n\t" + DBVector);
 		
@@ -99,7 +106,7 @@ public class FPGrowth {
 		preProcessing(DBVector, itemsMapToFrequencies, sortedItemsByFrequencies, itemsToRemove);
 		
 		// construct FPtree
-		tree = new FPTree(DBVector, itemsMapToFrequencies, minsup);		
+		tree = new FPTree(DBVector, itemsMapToFrequencies, minsup);	// TODO	
 		
 		// mining
 		tree.growth();

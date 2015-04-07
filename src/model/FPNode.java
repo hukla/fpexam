@@ -15,6 +15,7 @@ public class FPNode {
 		support = 0;
 		parent = null;
 		nodeLink = null;
+		item = ' ';
 	}
 	
 	public FPNode(int support, char item, FPNode parent) {
@@ -84,13 +85,15 @@ public class FPNode {
 	
 	public void putChild(FPNode child) {
 		children.add(child);
+		child.setParent(this);
 	}
 
 	@Override
 	public String toString() {
-		return "FPNode [support=" + support + ", item=" + item + ", parent="
-				+ parent + ", nodeLink=" + nodeLink// + ", children=" + children
-				+ "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("FPNode["+support+","+item+"]\n");
+		builder.append(children);
+		return builder.toString();
 	}
 
 }
