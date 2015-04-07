@@ -25,7 +25,7 @@ public class FPTree {
 			headerTable.add(new FPNode(itemForTable));
 		}
 		
-		System.out.println("header table : "+headerTable);
+		System.out.println("\theader table : "+headerTable);
 
 		FPNode tempNode;
 		FPNode newNode;
@@ -38,7 +38,7 @@ public class FPTree {
 			while(tokenizer.hasMoreTokens()) {
 				item = tokenizer.nextToken().charAt(0);
 				int childIdx = tempNode.getChildren().indexOf(item);
-				int cursup = (childIdx != -1) ? tempNode.getChildren().get(childIdx).getSupport() + 1 : 1;
+				int cursup = (childIdx != -1) ? tempNode.getChildren().get(childIdx).getSupport() + 1 : 1; 
 				
 				newNode = new FPNode(cursup, item, tempNode);
 				
@@ -48,7 +48,14 @@ public class FPTree {
 					tempNode.getChildren().set(childIdx, newNode);
 				}
 				
-				int tableIdx = headerTable.indexOf(item); // TODO item이 있는 FPNode를 찾아야댐 개빡침
+				int tableIdx = -1; 
+				for(int i = 0; i < headerTable.size(); i++) {
+					if(headerTable.get(i).getItem() == item) {
+						tableIdx = i;
+						break;
+					}
+				}
+				
 				FPNode tempNodeLink = headerTable.get(tableIdx);
 				
 				while(tempNodeLink.getNodeLink() != null) tempNodeLink = tempNodeLink.getNodeLink();
@@ -99,6 +106,7 @@ public class FPTree {
 //		
 ////		System.out.println(headerTable);
 		}
+		System.out.println(root);
 	}
 
 	public FPTree(Vector<FPNode> headerTable, FPNode root, int minsup) {
@@ -122,7 +130,7 @@ public class FPTree {
 	
 	public void growth(FPNode root, String base, Vector<FPNode> headerTable) {
 		for(FPNode iteminTree : headerTable) {
-			System.out.println(iteminTree);
+//			System.out.println(iteminTree);
 			String currentPattern = (base != null ? base : "") + (base != null ? " " : "") + iteminTree.getItem();
 			int supcur = 0; // support of current pattern
 			Map<String, Integer> conditionalPatternBase = new HashMap<String, Integer>();
