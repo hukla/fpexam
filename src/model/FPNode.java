@@ -22,12 +22,17 @@ public class FPNode {
 		this.support = support;
 		this.item = item;
 		this.parent = parent;
-		nodeLink = null;
+		this.nodeLink = null;
 	}
 	
 	public FPNode(char item, FPNode nodeLink) {
 		this.item = item;
 		this.nodeLink = nodeLink;
+	}
+	
+	public FPNode(char item, int support) {
+		this.item = item;
+		this.support = support;
 	}
 	
 	public FPNode(char item) {
@@ -86,6 +91,23 @@ public class FPNode {
 	public void putChild(FPNode child) {
 		children.add(child);
 		child.setParent(this);
+	}
+	
+	public int getChildIdx(char item) {
+		int childIdx = -1;
+		
+		for(int i = 0; i < children.size(); i++) {
+			if(children.get(i).getItem() == item) {
+				childIdx = i;
+				break;
+			}
+		}
+		
+		return childIdx;
+	}
+	
+	public FPNode getChild(char item) {
+		return children.get(getChildIdx(item));
 	}
 
 	@Override
