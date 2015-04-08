@@ -11,7 +11,7 @@ public class FPTree {
 	private Vector<FPNode> headerTable = new Vector<FPNode>();
 	private FPNode root;
 	private int minsup;
-	private Map<String, Integer> freqPatterns;
+	private Map<String, Integer> freqPatterns = new HashMap<String, Integer>();
 	
 	public FPTree() {
 		root = null;
@@ -37,30 +37,30 @@ public class FPTree {
 			StringTokenizer tokenizer = new StringTokenizer(transaction);
 			while(tokenizer.hasMoreTokens()) {
 				item = tokenizer.nextToken().charAt(0);
-				int childIdx = tempNode.getChildren().indexOf(item);
+				int childIdx = tempNode.getChildIdx(item);
 				int cursup = (childIdx != -1) ? tempNode.getChildren().get(childIdx).getSupport() + 1 : 1; 
 				
-				newNode = new FPNode(cursup, item, tempNode);
-				
 				if(cursup == 1) {
+					newNode = new FPNode(cursup, item, tempNode);
 					tempNode.putChild(newNode);
-				} else {
-					tempNode.getChildren().set(childIdx, newNode);
-				}
-				
-				int tableIdx = -1; 
-				for(int i = 0; i < headerTable.size(); i++) {
-					if(headerTable.get(i).getItem() == item) {
-						tableIdx = i;
-						break;
-					}
-				}
-				
-				FPNode tempNodeLink = headerTable.get(tableIdx);
-				
-				while(tempNodeLink.getNodeLink() != null) tempNodeLink = tempNodeLink.getNodeLink();
 					
-				tempNodeLink.setNodeLink(newNode);
+					int tableIdx = -1; 
+					for(int i = 0; i < headerTable.size(); i++) {
+						if(headerTable.get(i).getItem() == item) {
+							tableIdx = i;
+							break;
+						}
+					}
+					FPNode tempNodeLink = headerTable.get(tableIdx);
+					
+					while(tempNodeLink.getNodeLink() != null) tempNodeLink = tempNodeLink.getNodeLink();
+					
+					tempNodeLink.setNodeLink(newNode);
+				} else {
+					newNode = tempNode.getChild(item);
+					newNode.setSupport(cursup);
+				}
+				
 				tempNode = newNode;
 			} // done
 //
@@ -130,19 +130,19 @@ public class FPTree {
 	
 	public void growth(FPNode root, String base, Vector<FPNode> headerTable) {
 		for(FPNode iteminTree : headerTable) {
-//			System.out.println(iteminTree);
+			System.out.println(iteminTree);
 			String currentPattern = (base != null ? base : "") + (base != null ? " " : "") + iteminTree.getItem();
-			int supcur = 0; // support of current pattern
+			int supportofCurrentPattern = 0; // support of current pattern
 			Map<String, Integer> conditionalPatternBase = new HashMap<String, Integer>();
 			
 			while (iteminTree.getNodeLink() != null) {
 				iteminTree = iteminTree.getNodeLink();
-				supcur += iteminTree.getSupport();
+				supportofCurrentPattern += iteminTree.getSupport();
 				String conditionalPattern = null;
 				FPNode conditionalItem = iteminTree.getParent();
 				
-				while(conditionalItem != null) {
-					conditionalPattern = conditionalItem.getItem()+ " " + (conditionalPattern != null ? conditionalPattern : "");
+				while(conditionalItem.getItem() != ' ') {
+					conditionalPattern = conditionalItem.getItem()+ (conditionalPattern != null ? " " : "") + (conditionalPattern != null ? conditionalPattern : "");
 					conditionalItem = conditionalItem.getParent();
 				}
 				if(conditionalPattern != null) {
@@ -152,7 +152,7 @@ public class FPTree {
 				
 			}
 			
-			freqPatterns.put(currentPattern, supcur);
+			freqPatterns.put(currentPattern, supportofCurrentPattern);
 			
 			// count the support of each conditional item
 			Map<Character, Integer> conditionalItemsMaptoFreq = new HashMap<Character, Integer>(); 
@@ -165,7 +165,7 @@ public class FPTree {
 						count += conditionalPatternBase.get(item);
 						conditionalItemsMaptoFreq.put(item, count);
 					} else {
-						conditionalItemsMaptoFreq.put(item, conditionalPatternBase.get(item));
+						conditionalItemsMaptoFreq.put(item, conditionalPatternBase.get(item+""));
 					}
 				}
 				
@@ -176,12 +176,8 @@ public class FPTree {
 			Vector<FPNode> condHeaderTable = new Vector<FPNode>();
 			for(char itemsforTable : conditionalItemsMaptoFreq.keySet()) {
 				int count = conditionalItemsMaptoFreq.get(itemsforTable);
-				if(count < minsup) {
-					continue;
-				}
-				FPNode f = new FPNode(itemsforTable);
-				f.setSupport(count);
-				condHeaderTable.add(f);
+//				if(count < minsup) { continue; }
+				condHeaderTable.add(new FPNode(itemsforTable, count)); 
 			}
 			FPNode conditionalFPtree = condFPtreeConstructor(conditionalPatternBase, conditionalItemsMaptoFreq, condHeaderTable);
 			
@@ -206,43 +202,47 @@ public class FPTree {
 		for(String pattern : conditionalPatternBase.keySet()) {
 			tempNode = condFPtree;
 			
-			
 			Vector<Character> patternVector = new Vector<Character>();
 			StringTokenizer tokenizer = new StringTokenizer(pattern);
 			while(tokenizer.hasMoreTokens()) {
 				item = tokenizer.nextToken().charAt(0);
-				if(conditionalItemsMaptoFreq.get(item) > minsup) {
+				if(conditionalItemsMaptoFreq.get(item) >= minsup) {
 					patternVector.addElement(item);
 				}
 			} // creating pattern vector
 			
-			for(char p : patternVector) {
+			for(char p : patternVector) { // TODO
 				int childIdx = tempNode.getChildren().indexOf(p);
 				int cursup = (childIdx != -1) ? tempNode.getChildren().get(childIdx).getSupport() + 1 : 1;
-				
-				// create new node to put
-				newNode = new FPNode(cursup, p, tempNode);
 				
 				// put newNode 
 				if(cursup == 1) {
 					// if tempNode doesn't have p as a child
+					newNode = new FPNode(cursup, p, tempNode);
 					tempNode.putChild(newNode);
+
+					// put newNode in the header table
+					int tableIdx = -1;
+					for(int i = 0; i < condHeaderTable.size(); i++) {
+						if(condHeaderTable.get(i).getItem() == p) {
+							tableIdx = i;
+							break;
+						}
+					}
+					
+					FPNode tempNodeLink = condHeaderTable.get(tableIdx);
+					while(tempNodeLink.getNodeLink() != null) {
+						tempNodeLink = tempNodeLink.getNodeLink();
+					}
+					
+					tempNodeLink.setNodeLink(newNode);	
 				} else {
 					// if tempNode does have p as a child
+					newNode = tempNode.getChild(p);
 					tempNode.getChildren().set(childIdx, newNode);
 				}
 				
-				// put newNode in the header table
-				int tableIdx = condHeaderTable.indexOf(p);
-				FPNode tempNodeLink = condHeaderTable.get(tableIdx).getNodeLink();
-				
-				while(tempNodeLink.getNodeLink() != null) {
-					tempNodeLink = tempNodeLink.getNodeLink();
-				}
-				
-				tempNodeLink.setNodeLink(newNode);
 				tempNode = newNode;
-
 			}
 			
 		}

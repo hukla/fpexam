@@ -57,13 +57,12 @@ public class FPGrowth {
 				itemsToRemove.add(item);
 			}
 		}
-		
-		for(char itemTR : itemsToRemove) {
-			itemsMapToFrequencies.remove(itemTR);
-		}
-		
 		// sort freq. items in decreasing order
 		sortedItemsByFrequencies.putAll(itemsMapToFrequencies);
+
+		for(char itemTR : itemsToRemove) {
+			sortedItemsByFrequencies.remove(itemTR);
+		}
 		
 		System.out.println("1. Sorted Items By Frequenices\n\t"+sortedItemsByFrequencies);
 		
@@ -102,13 +101,16 @@ public class FPGrowth {
 		Vector<Character> itemsToRemove = new Vector<Character>(); 
 
 		// refactor strings in db
+		System.out.println("db refactoring...");
 		dbvectorConstructor(DB, DBVector);
 		preProcessing(DBVector, itemsMapToFrequencies, sortedItemsByFrequencies, itemsToRemove);
-		
+	
 		// construct FPtree
-		tree = new FPTree(DBVector, itemsMapToFrequencies, minsup);	// TODO	
+		System.out.println("constructing tree...");
+		tree = new FPTree(DBVector, itemsMapToFrequencies, minsup);	// DONE 
 		
 		// mining
+		System.out.println("mining...");
 		tree.growth();
 		
 		System.out.println("3. frequent patterns");
