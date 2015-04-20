@@ -1,8 +1,6 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.Vector;
@@ -25,7 +23,7 @@ public class FPTree {
 			headerTable.add(new FPNode(itemForTable));
 		}
 		
-		System.out.println("\theader table : "+headerTable);
+//		System.out.println("\theader table : "+headerTable);
 
 		FPNode tempNode;
 		FPNode newNode;
@@ -106,7 +104,7 @@ public class FPTree {
 //		
 ////		System.out.println(headerTable);
 		}
-		System.out.println(root);
+//		System.out.println(root);
 	}
 
 	public FPTree(Vector<FPNode> headerTable, FPNode root, int minsup) {
@@ -130,7 +128,7 @@ public class FPTree {
 	
 	public void growth(FPNode root, String base, Vector<FPNode> headerTable) {
 		for(FPNode iteminTree : headerTable) {
-			System.out.println(iteminTree);
+//			System.out.println(iteminTree);
 			String currentPattern = (base != null ? base : "") + (base != null ? " " : "") + iteminTree.getItem();
 			int supportofCurrentPattern = 0; // support of current pattern
 			Map<String, Integer> conditionalPatternBase = new HashMap<String, Integer>();
@@ -162,10 +160,10 @@ public class FPTree {
 					char item = tokenizer.nextToken().charAt(0);
 					if(conditionalItemsMaptoFreq.containsKey(item)) {
 						int count = conditionalItemsMaptoFreq.get(item);
-						count += conditionalPatternBase.get(item);
+						count += conditionalPatternBase.get(conditionalPattern);
 						conditionalItemsMaptoFreq.put(item, count);
 					} else {
-						conditionalItemsMaptoFreq.put(item, conditionalPatternBase.get(item+""));
+						conditionalItemsMaptoFreq.put(item, conditionalPatternBase.get(conditionalPattern));
 					}
 				}
 				

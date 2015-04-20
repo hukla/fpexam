@@ -20,7 +20,7 @@ import model.FPTree;
 public class FPGrowth {
 	
 	private String []DB = {"ab", "bcd", "acde", "ade", "abc", "abcd", "a", "abc", "abd", "bce"};
-	private int minsup = 50000;
+	private int minsup = 1000000;
 	private FPTree tree;
 	
 	public Vector<String> dbCreator() {
@@ -30,13 +30,13 @@ public class FPGrowth {
 		try {
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
-			
+			System.out.println("START READING");
 			while(true) {
 				String line = br.readLine();
 				if(line == null) {
 					break;
 				}
-				System.out.println(line);
+//				System.out.println(line);
 				StringTokenizer tokenizer = new StringTokenizer(line);
 				while(tokenizer.hasMoreTokens()) {
 					result.add(tokenizer.nextToken());
@@ -48,7 +48,7 @@ public class FPGrowth {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		System.out.println("DONE READING");
 		return result;
 	}
 	
