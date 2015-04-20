@@ -144,14 +144,18 @@ public class FPTree {
 					conditionalItem = conditionalItem.getParent();
 				}
 				if(conditionalPattern != null) {
-					int count = (conditionalPatternBase.containsKey(conditionalPattern)) ? conditionalPatternBase.get(conditionalPattern) : 0;
-					conditionalPatternBase.put(conditionalPattern, count + iteminTree.getSupport());
+//					int count = (conditionalPatternBase.containsKey(conditionalPattern)) ? conditionalPatternBase.get(conditionalPattern) : 0;
+//					conditionalPatternBase.put(conditionalPattern, count + iteminTree.getSupport());
+					conditionalPatternBase.put(conditionalPattern, iteminTree.getSupport());
+//					System.out.println(conditionalPatternBase.get(conditionalPattern));
 				}
 				
 			}
 			
-			freqPatterns.put(currentPattern, supportofCurrentPattern);
-			
+//			if(supportofCurrentPattern >= minsup) {
+				freqPatterns.put(currentPattern, supportofCurrentPattern);
+//			}
+//			System.out.println(freqPatterns);
 			// count the support of each conditional item
 			Map<Character, Integer> conditionalItemsMaptoFreq = new HashMap<Character, Integer>(); 
 			for(String conditionalPattern : conditionalPatternBase.keySet()) {
@@ -178,12 +182,15 @@ public class FPTree {
 				condHeaderTable.add(new FPNode(itemsforTable, count)); 
 			}
 			FPNode conditionalFPtree = condFPtreeConstructor(conditionalPatternBase, conditionalItemsMaptoFreq, condHeaderTable);
+//			System.out.println(conditionalFPtree);
 			
 			if(!conditionalFPtree.getChildren().isEmpty()) {
+//				System.out.println("recursive");
 				growth(conditionalFPtree, currentPattern, condHeaderTable);
 			}
 			
 		}
+		
 		
 	}
 	
@@ -210,11 +217,11 @@ public class FPTree {
 			} // creating pattern vector
 			
 			for(char p : patternVector) { // TODO
-				int childIdx = tempNode.getChildren().indexOf(p);
-				int cursup = (childIdx != -1) ? tempNode.getChildren().get(childIdx).getSupport() + 1 : 1;
-				
+				int childIdx = tempNode.getChildIdx(p);
+				int cursup = (childIdx != -1) ? tempNode.getChildren().get(childIdx).getSupport() + conditionalPatternBase.get(pattern): conditionalPatternBase.get(pattern);
+				// TODO
 				// put newNode 
-				if(cursup == 1) {
+				if(childIdx == -1) {
 					// if tempNode doesn't have p as a child
 					newNode = new FPNode(cursup, p, tempNode);
 					tempNode.putChild(newNode);
@@ -237,7 +244,7 @@ public class FPTree {
 				} else {
 					// if tempNode does have p as a child
 					newNode = tempNode.getChild(p);
-					tempNode.getChildren().set(childIdx, newNode);
+					newNode.setSupport(cursup);
 				}
 				
 				tempNode = newNode;
@@ -247,7 +254,7 @@ public class FPTree {
 		
 		return condFPtree; 
 	}
-
+	
 	public Vector<FPNode> getHeaderTable() {
 		return headerTable;
 	}
