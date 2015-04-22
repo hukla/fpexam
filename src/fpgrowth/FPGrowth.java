@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -18,15 +19,14 @@ import model.FPTree;
 
 
 public class FPGrowth {
-	
-	private String []DB = {"ab", "bcd", "acde", "ade", "abc", "abcd", "a", "abc", "abd", "bce"};
-	private int minsup = 1000000;
+	private int minsup = 50000;
 	private FPTree tree;
+	private String fileName = "dictionary.txt";
 	
 	public Vector<String> dbCreator() {
 		Vector<String> result = new Vector<String>();
 		
-		File file = new File("dictionary.txt");
+		File file = new File(fileName);
 		try {
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
@@ -162,16 +162,36 @@ public class FPGrowth {
 		result.addAll(tree.getFreqPatterns().keySet());
 		
 		
-		System.out.println("3. frequent patterns");
-		
+		System.out.println("3. frequent patterns from "+fileName+" with minsup "+minsup);
 		System.out.println("\t"+result);
 	}
 	
 	public void printTree() {
 		System.out.println(tree);
 	}
+	public int getMinsup() {
+		return minsup;
+	}
+
+	public void setMinsup(int minsup) {
+		this.minsup = minsup;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 	public static void main(String[] args) {
 		FPGrowth test = new FPGrowth();
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter filename: ");
+		test.setFileName(scan.nextLine());
+		System.out.println("Enter minsup: ");
+		test.setMinsup(scan.nextInt());
 		test.fpgrowth();
 //		test.printTree();
 	}
