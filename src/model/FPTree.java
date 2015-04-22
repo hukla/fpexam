@@ -152,9 +152,9 @@ public class FPTree {
 				
 			}
 			
-//			if(supportofCurrentPattern >= minsup) {
+			if(supportofCurrentPattern >= minsup) {
 				freqPatterns.put(currentPattern, supportofCurrentPattern);
-//			}
+			}
 //			System.out.println(freqPatterns);
 			// count the support of each conditional item
 			Map<Character, Integer> conditionalItemsMaptoFreq = new HashMap<Character, Integer>(); 
