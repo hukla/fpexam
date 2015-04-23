@@ -25,38 +25,28 @@ public class FPTree {
 		
 //		System.out.println("\theader table : "+headerTable);
 
-		for(String itemForTable : flist.keySet()) {
-			headerTable.add(new FPNode(itemForTable));
-		}
-		
-		System.out.println("\theader table : "+headerTable);
-
 		FPNode tempNode;
 		FPNode newNode;
 		String item;
 
 		for (String transaction : DBVector) {
 			tempNode = root;
-			
 			StringTokenizer tokenizer = new StringTokenizer(transaction);
 			while(tokenizer.hasMoreTokens()) {
 				item = tokenizer.nextToken();
 				int childIdx = tempNode.getChildIdx(item);
 				int cursup = (childIdx != -1) ? tempNode.getChildren().get(childIdx).getSupport() + 1 : 1; 
-				System.out.println(childIdx);
 				if(cursup == 1) {
-					System.out.println(item + ": "+cursup);
 					newNode = new FPNode(cursup, item, tempNode);
 					tempNode.putChild(newNode);
 					
 					int tableIdx = -1; 
 					for(int i = 0; i < headerTable.size(); i++) {
-						if(headerTable.get(i).getItem() == item) {
+						if(headerTable.get(i).getItem().equals(item)) {
 							tableIdx = i;
 							break;
 						}
 					}
-					System.out.println(tableIdx);
 					FPNode tempNodeLink = headerTable.get(tableIdx);
 					
 					while(tempNodeLink.getNodeLink() != null) tempNodeLink = tempNodeLink.getNodeLink();
@@ -67,6 +57,7 @@ public class FPTree {
 					newNode.setSupport(cursup);
 				}
 				
+				System.out.println("newNode:"+newNode);
 				tempNode = newNode;
 			} // done
 //
@@ -123,7 +114,7 @@ public class FPTree {
 
 	int tableHasItem(String item) {
 		for (int i = 0; i < headerTable.size(); i++) {
-			if (headerTable.get(i).getItem() == item) {
+			if (headerTable.get(i).getItem().equals(item)) {
 				return i;
 			}
 		}
@@ -227,7 +218,7 @@ public class FPTree {
 			for(String p : patternVector) { // TODO
 				int childIdx = tempNode.getChildIdx(p);
 				int cursup = (childIdx != -1) ? tempNode.getChildren().get(childIdx).getSupport() + conditionalPatternBase.get(pattern): conditionalPatternBase.get(pattern);
-				// TODO
+//				System.out.println(cursup);
 				// put newNode 
 				if(childIdx == -1) {
 					// if tempNode doesn't have p as a child
@@ -237,7 +228,7 @@ public class FPTree {
 					// put newNode in the header table
 					int tableIdx = -1;
 					for(int i = 0; i < condHeaderTable.size(); i++) {
-						if(condHeaderTable.get(i).getItem() == p) {
+						if(condHeaderTable.get(i).getItem().equals(p)) {
 							tableIdx = i;
 							break;
 						}

@@ -87,7 +87,7 @@ public class FPNode {
 		int childIdx = -1;
 
 		for (int i = 0; i < children.size(); i++) {
-			if (children.get(i).getItem() == item) {
+			if (children.get(i).getItem().equals(item)) {
 				childIdx = i;
 				break;
 			}
