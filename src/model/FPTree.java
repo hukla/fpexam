@@ -18,6 +18,12 @@ public class FPTree {
 	public FPTree(Vector<String> DBVector, Map<String, Integer> flist, int minsup) {
 		root = new FPNode();
 		this.minsup = minsup;
+		
+		for(String itemForTable : flist.keySet()) {
+			headerTable.add(new FPNode(itemForTable));
+		}
+		
+//		System.out.println("\theader table : "+headerTable);
 
 		for(String itemForTable : flist.keySet()) {
 			headerTable.add(new FPNode(itemForTable));

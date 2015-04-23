@@ -37,12 +37,12 @@ public class FPNode {
 		this.item = item;
 	}
 
-	public int getSupport() {
-		return support;
+	public FPNode getParent() {
+		return parent;
 	}
 
-	public void setSupport(int support) {
-		this.support = support;
+	public void setParent(FPNode parent) {
+		this.parent = parent;
 	}
 
 	public String getItem() {
@@ -52,13 +52,14 @@ public class FPNode {
 	public void setItem(String item) {
 		this.item = item;
 	}
-
-	public FPNode getParent() {
-		return parent;
+	
+	public int getSupport() {
+		return support;
 	}
 
-	public void setParent(FPNode parent) {
-		this.parent = parent;
+
+	public void setSupport(int support) {
+		this.support = support;
 	}
 
 	public FPNode getNodeLink() {
