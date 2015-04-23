@@ -18,12 +18,12 @@ public class FPTree {
 	public FPTree(Vector<String> DBVector, Map<String, Integer> flist, int minsup) {
 		root = new FPNode();
 		this.minsup = minsup;
-		
+
 		for(String itemForTable : flist.keySet()) {
 			headerTable.add(new FPNode(itemForTable));
 		}
 		
-//		System.out.println("\theader table : "+headerTable);
+		System.out.println("\theader table : "+headerTable);
 
 		FPNode tempNode;
 		FPNode newNode;
@@ -37,8 +37,9 @@ public class FPTree {
 				item = tokenizer.nextToken();
 				int childIdx = tempNode.getChildIdx(item);
 				int cursup = (childIdx != -1) ? tempNode.getChildren().get(childIdx).getSupport() + 1 : 1; 
-				
+				System.out.println(childIdx);
 				if(cursup == 1) {
+					System.out.println(item + ": "+cursup);
 					newNode = new FPNode(cursup, item, tempNode);
 					tempNode.putChild(newNode);
 					
@@ -49,6 +50,7 @@ public class FPTree {
 							break;
 						}
 					}
+					System.out.println(tableIdx);
 					FPNode tempNodeLink = headerTable.get(tableIdx);
 					
 					while(tempNodeLink.getNodeLink() != null) tempNodeLink = tempNodeLink.getNodeLink();
