@@ -19,7 +19,7 @@ import java.util.Vector;
 import model.FPTree;
 
 public class FPGrowth {
-	private int mincount = 50000;
+	private int mincount;
 	private double minsup;
 	private FPTree tree;
 	private String fileName;
@@ -38,10 +38,11 @@ public class FPGrowth {
 					break;
 				}
 //				System.out.println(line);
-				StringTokenizer tokenizer = new StringTokenizer(line);
-				while(tokenizer.hasMoreTokens()) {
-					result.add(tokenizer.nextToken());
-				}
+//				StringTokenizer tokenizer = new StringTokenizer(line);
+//				while(tokenizer.hasMoreTokens()) {
+//					result.add(tokenizer.nextToken());
+//				}
+				result.add(line.toLowerCase());
 			}
 			
 			br.close();
@@ -92,14 +93,16 @@ public class FPGrowth {
 		
 		// discard infrequent items;
 		Iterator<String> it = itemsMapToFrequencies.keySet().iterator();
-		
+		System.out.println("=============================ITEMSMAPTOFREQ================================");
 		while(it.hasNext()) {
 			String item = it.next();
-			
+			System.out.println(item + ":" + itemsMapToFrequencies.get(item));
 			if(itemsMapToFrequencies.get(item) < mincount) {
 				itemsToRemove.add(item);
 			}
 		}
+		System.out.println("=============================ITEMSMAPTOFREQ================================");
+
 		// sort freq. items in decreasing order
 		sortedItemsByFrequencies.putAll(itemsMapToFrequencies);
 
@@ -115,20 +118,31 @@ public class FPGrowth {
 			it = sortedItemsByFrequencies.descendingKeySet().iterator();
 			while(it.hasNext()) {
 				String item = it.next();
-				if(transaction.indexOf(item) != -1) {
-					int idx = transaction.indexOf(item);
-					if(idx != transaction.length() - 1) {
-						transaction = transaction.substring(idx, idx + 2) + transaction.substring(0, idx) + transaction.substring(idx + 2);
-					} else {
-						transaction = transaction.substring(idx) + " " + transaction.substring(0, idx); 
+				String []tarr = transaction.split(" ");
+				int j = 0;
+				for(; j < tarr.length; j++) {
+					if(tarr[j].equals(item)) {
+						String temp = tarr[0];
+						tarr[0] = tarr[j];
+						tarr[j] = temp;
+						break;
 					}
+				}
+				
+				transaction = "";
+				for(int k = 0; k < tarr.length; k++) {
+					transaction += tarr[k] + " ";
+				}
+				
+				if(transaction.length() > 1) {
+					transaction = transaction.substring(0, transaction.length() - 1);
 				}
 			}
 			DBVector.set(i, transaction);
 		}
 		
 		
-		//System.out.println("2. sorted DB\n\t" + DBVector);
+		System.out.println("2. sorted DB\n\t" + DBVector);
 		
 	}
 	
@@ -214,10 +228,12 @@ public class FPGrowth {
 	public static void main(String[] args) {
 		FPGrowth test = new FPGrowth();
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter filename: ");
-		test.setFileName(scan.nextLine());
-		System.out.println("Enter minsup: ");
-		test.setMinsup(scan.nextDouble());
+//		System.out.println("Enter filename: ");
+//		test.setFileName(scan.nextLine());
+		test.setFileName("input.txt");
+//		System.out.println("Enter minsup: ");
+//		test.setMinsup(scan.nextDouble());
+		test.setMinsup(0.3);
 		test.fpgrowth();
 //		test.printTree();
 	}
