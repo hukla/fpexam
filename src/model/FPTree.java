@@ -15,11 +15,11 @@ public class FPTree {
 		root = null;
 	}
 
-	public FPTree(Vector<String> DBVector, Map<Character, Integer> flist, int minsup) {
+	public FPTree(Vector<String> DBVector, Map<String, Integer> flist, int minsup) {
 		root = new FPNode();
 		this.minsup = minsup;
 		
-		for(char itemForTable : flist.keySet()) {
+		for(String itemForTable : flist.keySet()) {
 			headerTable.add(new FPNode(itemForTable));
 		}
 		
@@ -27,14 +27,14 @@ public class FPTree {
 
 		FPNode tempNode;
 		FPNode newNode;
-		char item;
+		String item;
 
 		for (String transaction : DBVector) {
 			tempNode = root;
 			
 			StringTokenizer tokenizer = new StringTokenizer(transaction);
 			while(tokenizer.hasMoreTokens()) {
-				item = tokenizer.nextToken().charAt(0);
+				item = tokenizer.nextToken();
 				int childIdx = tempNode.getChildIdx(item);
 				int cursup = (childIdx != -1) ? tempNode.getChildren().get(childIdx).getSupport() + 1 : 1; 
 				
@@ -63,7 +63,7 @@ public class FPTree {
 			} // done
 //
 //			for (int i = 0; i < transaction.length(); i++) {
-//				item = transaction.charAt(i);
+//				item = transaction.StringAt(i);
 //				int cursup = 1;
 //				int j = 0;
 //				
@@ -113,7 +113,7 @@ public class FPTree {
 		this.minsup = minsup;
 	}
 
-	int tableHasItem(char item) {
+	int tableHasItem(String item) {
 		for (int i = 0; i < headerTable.size(); i++) {
 			if (headerTable.get(i).getItem() == item) {
 				return i;
@@ -139,7 +139,7 @@ public class FPTree {
 				String conditionalPattern = null;
 				FPNode conditionalItem = iteminTree.getParent();
 				
-				while(conditionalItem.getItem() != ' ') {
+				while(conditionalItem.getItem() != "") {
 					conditionalPattern = conditionalItem.getItem()+ (conditionalPattern != null ? " " : "") + (conditionalPattern != null ? conditionalPattern : "");
 					conditionalItem = conditionalItem.getParent();
 				}
@@ -157,11 +157,11 @@ public class FPTree {
 			}
 //			System.out.println(freqPatterns);
 			// count the support of each conditional item
-			Map<Character, Integer> conditionalItemsMaptoFreq = new HashMap<Character, Integer>(); 
+			Map<String, Integer> conditionalItemsMaptoFreq = new HashMap<String, Integer>(); 
 			for(String conditionalPattern : conditionalPatternBase.keySet()) {
 				StringTokenizer tokenizer = new StringTokenizer(conditionalPattern);
 				while(tokenizer.hasMoreTokens()) {
-					char item = tokenizer.nextToken().charAt(0);
+					String item = tokenizer.nextToken();
 					if(conditionalItemsMaptoFreq.containsKey(item)) {
 						int count = conditionalItemsMaptoFreq.get(item);
 						count += conditionalPatternBase.get(conditionalPattern);
@@ -176,7 +176,7 @@ public class FPTree {
 			// conditional fp tree
 			// 1. headertable creation
 			Vector<FPNode> condHeaderTable = new Vector<FPNode>();
-			for(char itemsforTable : conditionalItemsMaptoFreq.keySet()) {
+			for(String itemsforTable : conditionalItemsMaptoFreq.keySet()) {
 				int count = conditionalItemsMaptoFreq.get(itemsforTable);
 //				if(count < minsup) { continue; }
 				condHeaderTable.add(new FPNode(itemsforTable, count)); 
@@ -195,28 +195,28 @@ public class FPTree {
 	}
 	
 
-	private FPNode condFPtreeConstructor(Map<String, Integer> conditionalPatternBase, Map<Character, Integer> conditionalItemsMaptoFreq, Vector<FPNode> condHeaderTable) {
+	private FPNode condFPtreeConstructor(Map<String, Integer> conditionalPatternBase, Map<String, Integer> conditionalItemsMaptoFreq, Vector<FPNode> condHeaderTable) {
 		
 		//TODO
 		FPNode condFPtree = new FPNode(); // root
 		
 		FPNode tempNode;
 		FPNode newNode;
-		char item;
+		String item;
 		
 		for(String pattern : conditionalPatternBase.keySet()) {
 			tempNode = condFPtree;
 			
-			Vector<Character> patternVector = new Vector<Character>();
+			Vector<String> patternVector = new Vector<String>();
 			StringTokenizer tokenizer = new StringTokenizer(pattern);
 			while(tokenizer.hasMoreTokens()) {
-				item = tokenizer.nextToken().charAt(0);
+				item = tokenizer.nextToken();
 				if(conditionalItemsMaptoFreq.get(item) >= minsup) {
 					patternVector.addElement(item);
 				}
 			} // creating pattern vector
 			
-			for(char p : patternVector) { // TODO
+			for(String p : patternVector) { // TODO
 				int childIdx = tempNode.getChildIdx(p);
 				int cursup = (childIdx != -1) ? tempNode.getChildren().get(childIdx).getSupport() + conditionalPatternBase.get(pattern): conditionalPatternBase.get(pattern);
 				// TODO

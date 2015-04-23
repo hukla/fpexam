@@ -1,10 +1,10 @@
 package fpgrowth;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,11 +17,11 @@ import java.util.Vector;
 
 import model.FPTree;
 
-
 public class FPGrowth {
-	private int minsup = 50000;
+	private int mincount = 50000;
+	private double minsup;
 	private FPTree tree;
-	private String fileName = "dictionary.txt";
+	private String fileName;
 	
 	public Vector<String> dbCreator() {
 		Vector<String> result = new Vector<String>();
@@ -49,37 +49,38 @@ public class FPGrowth {
 			e.printStackTrace();
 		}
 		System.out.println("DONE READING");
+		mincount = (int) (minsup * result.size());
 		return result;
 	}
 	
-	public void dbvectorConstructor(String []DB, Vector<String> DBVector) {
-		for(String t : DB) {
-			String result = null;
-			for(int i = 0; i < t.length(); i++) {
-				result = (result != null) ? result + " " + t.charAt(i) : ""+t.charAt(i);
-			}
-			DBVector.addElement(result);
-		}
-//		System.out.println(DBVector);
-	}
+//	public void dbvectorConstructor(String []DB, Vector<String> DBVector) {
+//		for(String t : DB) {
+//			String result = null;
+//			for(int i = 0; i < t.length(); i++) {
+//				result = (result != null) ? result + " " + t.StringAt(i) : ""+t.StringAt(i);
+//			}
+//			DBVector.addElement(result);
+//		}
+////		System.out.println(DBVector);
+//	}
+//	
+//	public void dbvectorConstructor(Vector<String> DB, Vector<String> dBVector) {
+//		for(String t : DB) {
+//			String result = null;
+//			for(int i = 0; i < t.length(); i++) {
+//				result = (result != null) ? result + " " + t.StringAt(i) : ""+t.StringAt(i);
+//			}
+//			dBVector.addElement(result);
+//		}
+//	}
 	
-	public void dbvectorConstructor(Vector<String> DB, Vector<String> dBVector) {
-		for(String t : DB) {
-			String result = null;
-			for(int i = 0; i < t.length(); i++) {
-				result = (result != null) ? result + " " + t.charAt(i) : ""+t.charAt(i);
-			}
-			dBVector.addElement(result);
-		}
-	}
-	
-	private void preProcessing(Vector<String> DBVector, Map<Character, Integer> itemsMapToFrequencies, TreeMap<Character, Integer> sortedItemsByFrequencies, Vector<Character> itemsToRemove) {
+	private void preProcessing(Vector<String> DBVector, Map<String, Integer> itemsMapToFrequencies, TreeMap<String, Integer> sortedItemsByFrequencies, Vector<String> itemsToRemove) {
 		// count the number of items
 		for(String transaction : DBVector) {
 			StringTokenizer tokenizer = new StringTokenizer(transaction);
 			
 			while(tokenizer.hasMoreTokens()) {
-				char item = tokenizer.nextToken().charAt(0);
+				String item = tokenizer.nextToken();
 				if(itemsMapToFrequencies.containsKey(item)) {
 					itemsMapToFrequencies.put(item, itemsMapToFrequencies.get(item) + 1);
 				} else {
@@ -89,19 +90,19 @@ public class FPGrowth {
 		}
 		
 		// discard infrequent items;
-		Iterator<Character> it = itemsMapToFrequencies.keySet().iterator();
+		Iterator<String> it = itemsMapToFrequencies.keySet().iterator();
 		
 		while(it.hasNext()) {
-			char item = it.next();
+			String item = it.next();
 			
-			if(itemsMapToFrequencies.get(item) < minsup) {
+			if(itemsMapToFrequencies.get(item) < mincount) {
 				itemsToRemove.add(item);
 			}
 		}
 		// sort freq. items in decreasing order
 		sortedItemsByFrequencies.putAll(itemsMapToFrequencies);
 
-		for(char itemTR : itemsToRemove) {
+		for(String itemTR : itemsToRemove) {
 			sortedItemsByFrequencies.remove(itemTR);
 		}
 		
@@ -112,7 +113,7 @@ public class FPGrowth {
 			String transaction = DBVector.get(i);
 			it = sortedItemsByFrequencies.descendingKeySet().iterator();
 			while(it.hasNext()) {
-				char item = it.next();
+				String item = it.next();
 				if(transaction.indexOf(item) != -1) {
 					int idx = transaction.indexOf(item);
 					if(idx != transaction.length() - 1) {
@@ -126,28 +127,28 @@ public class FPGrowth {
 		}
 		
 		
-		System.out.println("2. sorted DB\n\t" + DBVector);
+		//System.out.println("2. sorted DB\n\t" + DBVector);
 		
 	}
 	
 	public void fpgrowth() {
-		Vector<String> DBVector = new Vector<String>();
-		Map<Character, Integer> itemsMapToFrequencies = new HashMap<Character, Integer>();
+		Vector<String> DBVector = dbCreator();
+		Map<String, Integer> itemsMapToFrequencies = new HashMap<String, Integer>();
 		ValueComparator bvc = new ValueComparator(itemsMapToFrequencies);
-		TreeMap<Character, Integer> sortedItemsByFrequencies = new TreeMap<Character, Integer>(bvc);
-		Vector<Character> itemsToRemove = new Vector<Character>(); 
+		TreeMap<String, Integer> sortedItemsByFrequencies = new TreeMap<String, Integer>(bvc);
+		Vector<String> itemsToRemove = new Vector<String>(); 
 
 		// refactor strings in db
-//		System.out.println("db refactoring...");
-		dbvectorConstructor(dbCreator(), DBVector);
+		System.out.println("db refactoring...");
+//		dbvectorConstructor(dbCreator(), DBVector);
 		preProcessing(DBVector, itemsMapToFrequencies, sortedItemsByFrequencies, itemsToRemove);
 	
 		// construct FPtree
-//		System.out.println("constructing tree...");
-		tree = new FPTree(DBVector, itemsMapToFrequencies, minsup);	// DONE 
+		System.out.println("constructing tree...");
+		tree = new FPTree(DBVector, itemsMapToFrequencies, mincount);	// DONE 
 		
 		// mining
-//		System.out.println("mining...");
+		System.out.println("mining...");
 		tree.growth();
 		
 		Comparator<String> cmp = new Comparator<String>() {
@@ -161,20 +162,36 @@ public class FPGrowth {
 		TreeSet<String> result = new TreeSet<String>(cmp);
 		result.addAll(tree.getFreqPatterns().keySet());
 		
-		
-		System.out.println("3. frequent patterns from "+fileName+" with minsup "+minsup);
+		File file = new File("result");
+		try {
+			FileWriter fw = new FileWriter(file);
+			BufferedWriter bw = new BufferedWriter(fw);
+
+			Iterator<String> it = result.iterator();
+			
+			while(it.hasNext()) {
+				String line = it.next();
+				bw.write(line+"\n");
+			}
+			
+			bw.close();
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("3. frequent patterns from "+fileName+" with minsup "+mincount);
 		System.out.println("\t"+result);
 	}
 	
 	public void printTree() {
 		System.out.println(tree);
 	}
-	public int getMinsup() {
-		return minsup;
+	public int getMincount() {
+		return mincount;
 	}
 
-	public void setMinsup(int minsup) {
-		this.minsup = minsup;
+	public void setMincount(int minsup) {
+		this.mincount = minsup;
 	}
 
 	public String getFileName() {
@@ -185,28 +202,36 @@ public class FPGrowth {
 		this.fileName = fileName;
 	}
 
+	public double getMinsup() {
+		return minsup;
+	}
+
+	public void setMinsup(double minsup) {
+		this.minsup = minsup;
+	}
+
 	public static void main(String[] args) {
 		FPGrowth test = new FPGrowth();
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter filename: ");
 		test.setFileName(scan.nextLine());
 		System.out.println("Enter minsup: ");
-		test.setMinsup(scan.nextInt());
+		test.setMinsup(scan.nextDouble());
 		test.fpgrowth();
 //		test.printTree();
 	}
 
 }
 
-class ValueComparator implements Comparator<Character> {
+class ValueComparator implements Comparator<String> {
 	
-	Map<Character, Integer> base;
+	Map<String, Integer> base;
 	
-	public ValueComparator(Map<Character, Integer> base) {
+	public ValueComparator(Map<String, Integer> base) {
 		this.base = base;
 	}
 	
-	public int compare(Character a, Character b) {
+	public int compare(String a, String b) {
 		if (base.get(a) >= base.get(b)) {
 			return -1;
 		} else {
