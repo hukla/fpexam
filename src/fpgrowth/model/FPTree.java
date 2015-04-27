@@ -16,6 +16,8 @@ public class FPTree {
 	}
 
 	public FPTree(Vector<String> DBVector, Map<String, Integer> flist, int minsup) {
+		System.out.print("sorting transactions ...");
+		long startTime = System.currentTimeMillis();
 		root = new FPNode();
 		this.minsup = minsup;
 		
@@ -23,8 +25,6 @@ public class FPTree {
 			headerTable.add(new FPNode(itemForTable));
 		}
 		
-//		System.out.println("\theader table : "+headerTable);
-
 		FPNode tempNode;
 		FPNode newNode;
 		String item;
@@ -57,53 +57,11 @@ public class FPTree {
 					newNode.setSupport(cursup);
 				}
 				
-				System.out.println("newNode:"+newNode);
 				tempNode = newNode;
 			} // done
-//
-//			for (int i = 0; i < transaction.length(); i++) {
-//				item = transaction.StringAt(i);
-//				int cursup = 1;
-//				int j = 0;
-//				
-//				if(!tempNode.getChildren().isEmpty()) {
-//					for (; j < tempNode.getChildren().size(); j++) {
-//						if (tempNode.getChildren().get(j).getItem() == item) {
-//							cursup = tempNode.getChildren().get(j).getSupport() + 1;
-//							break;
-//						}
-//					}
-//				}
-//
-//				newNode = new FPNode(cursup, item, tempNode);
-//
-//				if (cursup == 1) {
-//					tempNode.putChild(newNode);
-//
-//					int tableIdx = tableHasItem(item);
-//					if (tableIdx == -1) {
-//						headerTable.add(new FPNode(item, newNode));
-//					} else {
-//						FPNode tempNodeLink = headerTable.get(tableIdx).getNodeLink();
-//						while (tempNodeLink.getNodeLink() != null) {
-//							tempNodeLink = tempNodeLink.getNodeLink();
-//						}
-//						tempNodeLink.setNodeLink(newNode);
-//					}
-//					
-//					tempNode = newNode;
-//				} else {
-//					tempNode.getChildren().get(j).setSupport(cursup);
-//					
-//					tempNode = tempNode.getChildren().get(j);
-//				}
-//				
-//			}
-//		}
-//		
-////		System.out.println(headerTable);
 		}
-//		System.out.println(root);
+		long endTime = System.currentTimeMillis();
+		System.out.print(" done [" + (endTime - startTime) / 1000.000 + "s]\n");
 	}
 
 	public FPTree(Vector<FPNode> headerTable, FPNode root, int minsup) {
@@ -122,12 +80,15 @@ public class FPTree {
 	}
 	
 	public void growth() {
+		System.out.print("reducing transactions ...");
+		long startTime = System.currentTimeMillis();
 		growth(root, null, headerTable);
+		long endTime = System.currentTimeMillis();
+		System.out.print(" done [" + (endTime - startTime) / 1000.000 + "s]\n");
 	}
 	
 	public void growth(FPNode root, String base, Vector<FPNode> headerTable) {
 		for(FPNode iteminTree : headerTable) {
-//			System.out.println(iteminTree);
 			String currentPattern = (base != null ? base : "") + (base != null ? " " : "") + iteminTree.getItem();
 			int supportofCurrentPattern = 0; // support of current pattern
 			Map<String, Integer> conditionalPatternBase = new HashMap<String, Integer>();
@@ -143,10 +104,7 @@ public class FPTree {
 					conditionalItem = conditionalItem.getParent();
 				}
 				if(conditionalPattern != null) {
-//					int count = (conditionalPatternBase.containsKey(conditionalPattern)) ? conditionalPatternBase.get(conditionalPattern) : 0;
-//					conditionalPatternBase.put(conditionalPattern, count + iteminTree.getSupport());
 					conditionalPatternBase.put(conditionalPattern, iteminTree.getSupport());
-//					System.out.println(conditionalPatternBase.get(conditionalPattern));
 				}
 				
 			}
@@ -154,7 +112,6 @@ public class FPTree {
 			if(supportofCurrentPattern >= minsup) {
 				freqPatterns.put(currentPattern, supportofCurrentPattern);
 			}
-//			System.out.println(freqPatterns);
 			// count the support of each conditional item
 			Map<String, Integer> conditionalItemsMaptoFreq = new HashMap<String, Integer>(); 
 			for(String conditionalPattern : conditionalPatternBase.keySet()) {
@@ -177,26 +134,20 @@ public class FPTree {
 			Vector<FPNode> condHeaderTable = new Vector<FPNode>();
 			for(String itemsforTable : conditionalItemsMaptoFreq.keySet()) {
 				int count = conditionalItemsMaptoFreq.get(itemsforTable);
-//				if(count < minsup) { continue; }
 				condHeaderTable.add(new FPNode(itemsforTable, count)); 
 			}
 			FPNode conditionalFPtree = condFPtreeConstructor(conditionalPatternBase, conditionalItemsMaptoFreq, condHeaderTable);
-//			System.out.println(conditionalFPtree);
 			
 			if(!conditionalFPtree.getChildren().isEmpty()) {
-//				System.out.println("recursive");
 				growth(conditionalFPtree, currentPattern, condHeaderTable);
 			}
 			
 		}
 		
-		
 	}
 	
 
 	private FPNode condFPtreeConstructor(Map<String, Integer> conditionalPatternBase, Map<String, Integer> conditionalItemsMaptoFreq, Vector<FPNode> condHeaderTable) {
-		
-		//TODO
 		FPNode condFPtree = new FPNode(); // root
 		
 		FPNode tempNode;
@@ -218,7 +169,6 @@ public class FPTree {
 			for(String p : patternVector) { // TODO
 				int childIdx = tempNode.getChildIdx(p);
 				int cursup = (childIdx != -1) ? tempNode.getChildren().get(childIdx).getSupport() + conditionalPatternBase.get(pattern): conditionalPatternBase.get(pattern);
-//				System.out.println(cursup);
 				// put newNode 
 				if(childIdx == -1) {
 					// if tempNode doesn't have p as a child
