@@ -1,4 +1,4 @@
-package fpgrowth;
+package fpgrowth.driver;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,7 +16,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Vector;
 
-import model.FPTree;
+import fpgrowth.model.FPTree;
 
 public class FPGrowth {
 	private int mincount;

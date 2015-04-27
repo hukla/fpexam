@@ -1,4 +1,4 @@
-package model;
+package fpgrowth.model;
 
 import java.util.Vector;
 
