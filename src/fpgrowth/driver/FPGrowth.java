@@ -226,6 +226,7 @@ public class FPGrowth {
 	}
 
 	public static void main(String[] args) {
+		long startTime = System.currentTimeMillis();
 		FPGrowth test = new FPGrowth();
 		Scanner scan = new Scanner(System.in);
 //		System.out.println("Enter filename: ");
@@ -235,6 +236,9 @@ public class FPGrowth {
 //		test.setMinsup(scan.nextDouble());
 		test.setMinsup(0.3);
 		test.fpgrowth();
+		long endTime = System.currentTimeMillis();
+		long duration = (endTime - startTime);
+		System.out.println("duration: "+duration);
 //		test.printTree();
 	}
 
